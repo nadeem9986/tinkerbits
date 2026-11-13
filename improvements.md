@@ -106,3 +106,11 @@ Every change Nadeem asks for is recorded here, in his words, with the date and w
 | "why is it rendering the page again if i click explore models and the other options is should just navigate there not reload the page there" | polish.js now routes clicks between / and /models client-side: fetches the target page, swaps main and footer, keeps header, theme, menu and scroll listeners, updates title and history (back/forward and direct links work, scroll restored). Same-page links (index.html#materials) scroll in place. Any failure falls back to a normal page load. |
 | "why did u remove the navbar liquidglass effect it became the frost glass effect" | Removed the blur from the lens path (it had been added back for legibility and made it frosted). Lens refraction strength 16 to 30. The core/memory/reduced-motion heuristic is gone: every Chromium browser gets the lens. Non-Chromium browsers (Safari, iOS, Firefox) cannot render SVG backdrop filters and get the clear blur fallback. |
 | Mobile menu review | Escape, link tap, brand-mark tap and outside tap all close the menu; the label follows aria-expanded. |
+
+
+## Round: clean URLs (Nov 13, 6:07 PM IST)
+
+| Request (user, verbatim) | What changed |
+|---|---|
+| "For all  options here" / "For explore models also" | Router intercepts every internal link on both pages (nav, hero, CTAs, logo, footer, model cards), tested with real clicks on desktop and mobile menu, from direct landing and routed states. |
+| "Also the url should look clean" | Internal links are now /, /#studio, /#materials, /#quote, /models and /?model=NAME#quote. The router pushes canonical paths (no .html), fetches canonical paths, and cleans an old /index.html or /models.html in the address bar on load. The host already 308-redirects /index.html to / and /models.html to /models, so old inbound links keep working with their hash and query. |
