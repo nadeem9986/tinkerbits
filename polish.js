@@ -118,7 +118,7 @@
     bm.innerHTML = '<span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>';
     var syncBm = function () {
       bm.setAttribute('aria-expanded', oldMenu.getAttribute('aria-expanded') || 'false');
-      bm.setAttribute('aria-label', oldMenu.getAttribute('aria-label') || 'Open navigation');
+      bm.setAttribute('aria-label', bm.getAttribute('aria-expanded') === 'true' ? 'Close navigation' : 'Open navigation');
     };
     bm.addEventListener('click', function () { oldMenu.click(); });
     new MutationObserver(syncBm).observe(oldMenu, { attributes: true, attributeFilter: ['aria-expanded', 'aria-label'] });
