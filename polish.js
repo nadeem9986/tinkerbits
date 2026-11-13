@@ -173,6 +173,12 @@
     var sync = function () { var p = pv.paused; b.classList.toggle('is-paused', p); b.setAttribute('aria-label', p ? 'Play printer video' : 'Pause printer video'); };
     b.addEventListener('click', function () { if (pv.paused) pv.play().catch(function () {}); else pv.pause(); });
     pv.addEventListener('play', sync); pv.addEventListener('pause', sync); sync();
+    var hideT, show = function () {
+      wrap.classList.remove('tb-vc-hide'); clearTimeout(hideT);
+      hideT = setTimeout(function () { if (wrap.contains(document.activeElement) && b.matches(':focus-visible')) return; wrap.classList.add('tb-vc-hide'); }, 1100);
+    };
+    box.addEventListener('pointermove', show); box.addEventListener('pointerdown', show); wrap.addEventListener('pointerenter', show);
+    wrap.addEventListener('focusin', show); wrap.addEventListener('focusout', show); show();
   }
   }
   fixVideo();
