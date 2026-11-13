@@ -219,6 +219,13 @@
       closeMenu();
       var sc = document.createElement('script'); sc.textContent = '{\n' + code + '\n}'; document.body.appendChild(sc); sc.remove();
       iconify(document.body); fixVideo(); reveal();
+      var qf = document.getElementById('quote-form');
+      if (qf) {
+        var mdl = new URLSearchParams(location.search).get('model');
+        if (mdl && qf.elements.details) qf.elements.details.value = 'Example project: ' + mdl;
+        qf.addEventListener('submit', function (e) { e.preventDefault(); var st = document.querySelector('.form-status'); if (st) st.textContent = 'Demo only. Nothing was sent, uploaded or saved.'; });
+      }
+      var yr = document.getElementById('year'); if (yr) yr.textContent = new Date().getFullYear();
       var land = function () { if (y != null) scrollTo({ top: y, behavior: 'instant' }); else if (u.hash && u.hash !== '#') { var t = document.getElementById(decodeURIComponent(u.hash.slice(1))); if (t) t.scrollIntoView({ behavior: 'instant', block: 'start' }); } else scrollTo({ top: 0, behavior: 'instant' }); };
       land(); requestAnimationFrame(land); setTimeout(land, 250);
       probe(true);
