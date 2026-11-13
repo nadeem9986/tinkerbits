@@ -268,6 +268,19 @@
     var t = document.getElementById(decodeURIComponent(h.slice(1)));
     if (t) t.scrollIntoView({ behavior: smooth && !reduce ? 'smooth' : 'auto', block: 'start' });
   };
+  // Page cache: the other route is fetched ahead of the click (idle, hover, touch) so the swap does not wait on the network. Skipped when Save-Data is on.
+  var pcache = {};
+  function getPage(k) {
+    if (!pcache[k]) pcache[k] = fetch(k, { credentials: 'same-origin' }).then(function (r) { if (!r.ok) throw new Error('http'); return r.text(); }).catch(function (e) { delete pcache[k]; throw e; });
+    return pcache[k];
+  }
+  var saveData = !!(navigator.connection && navigator.connection.saveData);
+  var warm = function () { if (saveData) return; var o = shown === '/' ? '/models' : '/'; getPage(o).catch(function () {}); };
+  (window.requestIdleCallback || function (f) { setTimeout(f, 800); })(warm);
+  var warmLink = function (e) { if (saveData) return; var a = e.target.closest && e.target.closest('a[href]'); if (!a) return; var u = new URL(a.href, location.href); if (u.origin !== location.origin) return; var r = routeOf(u); if ((r === '/' || r === '/models') && r !== shown) getPage(r + u.search).catch(function () {}); };
+  document.addEventListener('pointerover', warmLink, { passive: true });
+  document.addEventListener('touchstart', warmLink, { passive: true });
+  document.addEventListener('pointerdown', warmLink, { passive: true });
   function swapTo(u, push, y) {
     if (busy) return;
     if (routeOf(u) === shown) {
@@ -278,7 +291,7 @@
     }
     busy = true;
     if (push) history.replaceState({ tb: 1, y: scrollY }, '');
-    fetch(routeOf(u) + u.search, { credentials: 'same-origin' }).then(function (r) { if (!r.ok) throw new Error('http'); return r.text(); }).then(function (html) {
+    getPage(routeOf(u) + u.search).then(function (html) {
       var d = new DOMParser().parseFromString(html, 'text/html');
       var nm = d.querySelector('main'), om = document.querySelector('main');
       if (!nm || !om) throw new Error('shape');
