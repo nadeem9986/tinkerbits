@@ -149,3 +149,6 @@ html:not([data-theme="dark"]) .site-header:not([data-over="dark"]){background:rg
 .tb-vc-btn.is-paused .i-pause{display:none}
 .video-toggle{display:none!important}
 @media (max-width:560px){.tb-vc{left:auto;right:14px;transform:none}}
+/* Auto-hide: fades out after about 1.1s without pointer or focus activity; returns on move, tap or keyboard focus. */
+.tb-vc{transition:opacity .3s ease}
+.tb-vc.tb-vc-hide{opacity:0;pointer-events:none}
