@@ -164,6 +164,16 @@
     new MutationObserver(fixVid).observe(vt, { childList: true, characterData: true, subtree: true });
     fixVid();
   }
+  var pv = document.getElementById('printer-video'), box = document.querySelector('.hero-visual');
+  if (pv && box && !box.querySelector('.tb-vc')) {
+    var wrap = document.createElement('div'); wrap.className = 'tb-vc'; wrap.setAttribute('role', 'group'); wrap.setAttribute('aria-label', 'Video controls');
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'tb-vc-btn';
+    b.innerHTML = '<svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5z"/></svg>';
+    wrap.appendChild(b); box.appendChild(wrap);
+    var sync = function () { var p = pv.paused; b.classList.toggle('is-paused', p); b.setAttribute('aria-label', p ? 'Play printer video' : 'Pause printer video'); };
+    b.addEventListener('click', function () { if (pv.paused) pv.play().catch(function () {}); else pv.pause(); });
+    pv.addEventListener('play', sync); pv.addEventListener('pause', sync); sync();
+  }
   }
   fixVideo();
 
