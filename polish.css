@@ -124,3 +124,8 @@ html[data-theme="dark"] .location>span{color:var(--g-accent2)}
   .brand-menu[aria-expanded="true"] .brand-mark i:nth-child(2){opacity:0;transform:scaleX(.2)}
   .brand-menu[aria-expanded="true"] .brand-mark i:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
 }
+
+/* ---------- legibility v8: clear blur keeps foreground/background from colliding (no milky fog) ---------- */
+html.tb-lens-ready .site-header{-webkit-backdrop-filter:url(#tb-lens) blur(9px) saturate(1.15);backdrop-filter:url(#tb-lens) blur(9px) saturate(1.15)}
+html.tb-lite .site-header{-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2)}
+html:not([data-theme="dark"]) .site-header:not([data-over="dark"]){background:rgba(255,255,255,.34)}
