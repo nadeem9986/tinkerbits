@@ -177,3 +177,12 @@ html:not([data-theme="dark"]) .site-header:not([data-over="dark"]){background:rg
 
 /* v19: theme toggle sat 6px further left in dark than light on phones (inline CSS gave dark margin-right 12px, light 18px). Same margin in both themes. */
 @media (max-width:760px){.site-header .theme-toggle,html[data-theme="dark"] .site-header .theme-toggle{margin-right:12px}}
+
+/* v20: directory of model sites on /models */
+.tb-dir{padding-top:8px;padding-bottom:24px}
+.tb-dir h2{font-size:clamp(24px,3.4vw,34px);margin:0 0 8px}
+.tb-dir-lead{margin:0 0 20px;max-width:56ch;opacity:.8}
+.tb-dir-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.tb-dir-card .model-body{display:flex;flex-direction:column;gap:6px}
+.tb-dir-card .model-body p{margin:0}
+.tb-dir-note{margin:18px 0 10px;max-width:62ch;font-size:14px;opacity:.75}
