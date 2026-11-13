@@ -6,7 +6,7 @@
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var cores = navigator.hardwareConcurrency || 8;
   var mem = navigator.deviceMemory || 8;
-  var lite = reduce || cores <= 4 || mem <= 2;
+  var ua = navigator.userAgent; var lite = !(/Chrome\/|Chromium\/|Edg\//.test(ua) && !/CriOS|FxiOS|iPhone|iPad/.test(ua));
 
   // Browser theme-color follows the graphite dark palette.
   var meta = document.querySelector('meta[name="theme-color"]');
@@ -37,7 +37,7 @@
       var dm = document.createElementNS(ns, 'feDisplacementMap');
       dm.setAttribute('in', 'SourceGraphic');
       dm.setAttribute('in2', 'map');
-      dm.setAttribute('scale', '16');
+      dm.setAttribute('scale', '30');
       dm.setAttribute('xChannelSelector', 'R');
       dm.setAttribute('yChannelSelector', 'G');
       f.appendChild(im);
