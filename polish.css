@@ -221,3 +221,6 @@ html[data-theme="dark"] .brand-mark .tb-lg,.site-header[data-over="dark"] .brand
 
 /* v29: in-page links (Materials, Studio, Quote) jump straight to the section. No long animated scroll. */
 html{scroll-behavior:auto!important}
+
+/* v30: sections fade in faster (about half the time, shorter stagger), so a section reached by a link or a scroll is not blank for a second. Same effect, same movement. */
+.tb-reveal{transition:opacity .42s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);transition-delay:calc(var(--tb-d,0s)*.5)}
