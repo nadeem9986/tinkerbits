@@ -115,7 +115,7 @@
     bm.type = 'button';
     bm.className = 'brand-menu';
     bm.setAttribute('aria-controls', 'navigation');
-    bm.innerHTML = '<span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>';
+    bm.innerHTML = '<span class="brand-mark" aria-hidden="true"><svg class="tb-mark" viewBox="0 0 23 33" width="23" height="33" aria-hidden="true" focusable="false"><path d="M0 8.8L23 0V2.3L0 11.1Z"/><path d="M0 12.4L23 3.6V5.9L0 14.7Z"/><path d="M0 16L23 7.2V9.5L0 18.3Z"/><path d="M0 19.6L23 10.8V13.1L0 21.9Z"/><path d="M0 23.2L23 14.4V16.7L0 25.5Z"/><path d="M0 26.8L23 18V20.3L0 29.1Z"/><path d="M0 30.4L23 21.6V23.9L0 32.7Z"/></svg></span>';
     var syncBm = function () {
       bm.setAttribute('aria-expanded', oldMenu.getAttribute('aria-expanded') || 'false');
       bm.setAttribute('aria-label', bm.getAttribute('aria-expanded') === 'true' ? 'Close navigation' : 'Open navigation');
