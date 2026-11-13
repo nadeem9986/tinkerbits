@@ -189,3 +189,7 @@ html:not([data-theme="dark"]) .site-header:not([data-over="dark"]){background:rg
 
 /* v21: directory cards: drop the inherited 65px description min-height */
 .tb-dir-card .model-body p{min-height:0}
+
+/* v23: example model cards, search and filters removed from /models; the directory is the page body */
+main>.catalogue{display:none}
+.tb-dir{padding-bottom:72px}
