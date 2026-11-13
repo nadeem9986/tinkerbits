@@ -263,10 +263,11 @@
   var canon = function (u) { return routeOf(u) + u.search + u.hash; };
   if (location.pathname !== routeOf(location)) history.replaceState(history.state, '', canon(location));
   var closeMenu = function () { if (oldMenu && oldMenu.getAttribute('aria-expanded') === 'true') oldMenu.click(); };
+  // In-page jumps (Materials, Studio, Quote) land at once. A long animated scroll over the video and glass header felt slow, so there is none.
   var toHash = function (h, smooth) {
-    if (!h || h === '#') { scrollTo({ top: 0, behavior: smooth && !reduce ? 'smooth' : 'auto' }); return; }
+    if (!h || h === '#') { scrollTo({ top: 0, behavior: 'auto' }); return; }
     var t = document.getElementById(decodeURIComponent(h.slice(1)));
-    if (t) t.scrollIntoView({ behavior: smooth && !reduce ? 'smooth' : 'auto', block: 'start' });
+    if (t) t.scrollIntoView({ behavior: 'auto', block: 'start' });
   };
   // Page cache: the other route is fetched ahead of the click (idle, hover, touch) so the swap does not wait on the network. Skipped when Save-Data is on.
   var pcache = {};
