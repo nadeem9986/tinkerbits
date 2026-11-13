@@ -35,3 +35,22 @@ Redesign branch: `modern-ui-2026-11`. Original site preserved on branch `backup/
 - Default follows the visitor's system preference (`prefers-color-scheme`); the choice is remembered in `localStorage` (`tb-theme`).
 - Dark palette keeps the blue accent (#1555ed family) on deep navy surfaces; the already-dark process section and hero video are unchanged.
 - `meta theme-color` updates with the theme; dark mode sets `color-scheme: dark` so native form controls match.
+
+## Change requests from Nadeem (log)
+
+Every change Nadeem asks for is recorded here, in his words, with the date and what was done.
+
+| Date (IST) | Request | Status |
+|---|---|---|
+| 13 Nov 2026, 15:42 | "Yess deploy it" (approved the redesign preview) | Done, live |
+| 13 Nov 2026, 15:43 | "Dont add any contact for now keep it as example now" | Done: no contact details, enquiry form is demo-only |
+| 13 Nov 2026, 15:44 | "it would b best if tye image of the 3d printer was live where it shows the working of a 3d printer just working" | Done: looping time-lapse of a real printer (MDXDave, CC BY-SA 4.0), labelled example footage, not a live camera |
+| 13 Nov 2026, 15:59 | "Also add dark mode" | Done, live |
+| 13 Nov 2026, 16:14 | "Make a improvements md file and whatever i say to u to make changes store it there also" | Done: this log |
+| 13 Nov 2026, 16:14 | "The navbar should have the squarerounded corners and navbar should be on the top and vosible" | Done: rounded-rectangle navbar (16px radius, 14px on mobile) that stays fixed at the top while scrolling |
+| 13 Nov 2026, 16:15 | "The navbat should have the liquidglass effect" | Done: translucent frosted-glass navbar (backdrop blur, soft highlight edge) in light and dark themes, with a solid fallback where blur is unsupported |
+
+## Navbar (13 Nov 2026)
+- Floating rounded-rectangle bar, sticky at the top of both pages, always visible while scrolling.
+- Liquid-glass look: translucent gradient fill, backdrop blur and saturation, light inner edge and top sheen. Dark theme has its own tint.
+- Mobile: smaller bar, menu drops below it with a gap; anchor links offset so headings are not hidden behind the bar.
