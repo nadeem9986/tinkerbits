@@ -114,3 +114,13 @@ Every change Nadeem asks for is recorded here, in his words, with the date and w
 |---|---|
 | "For all  options here" / "For explore models also" | Router intercepts every internal link on both pages (nav, hero, CTAs, logo, footer, model cards), tested with real clicks on desktop and mobile menu, from direct landing and routed states. |
 | "Also the url should look clean" | Internal links are now /, /#studio, /#materials, /#quote, /models and /?model=NAME#quote. The router pushes canonical paths (no .html), fetches canonical paths, and cleans an old /index.html or /models.html in the address bar on load. The host already 308-redirects /index.html to / and /models.html to /models, so old inbound links keep working with their hash and query. |
+
+
+## Requests (13 Nov 2026, theme ring and video controls)
+
+| When | Request | Outcome |
+|---|---|---|
+| 13 Nov 2026, 18:17 | "There is a blue circle in the dark mode icon that should not b there after cicking it" | Done: theme icon ring. Cause was the hover style (blue border, tilt) staying on after a tap on touch screens, not keyboard focus. Hover styling now only applies to real pointers. Keyboard focus-visible outline unchanged |
+| 13 Nov 2026, 18:19 | "I would like the media control from this video here to b added go search the site and get the code understand and implement it in tinkerbits" (famease.in landing page video, screenshot) | Done: a rounded translucent pill with a round white play/pause button at the bottom centre of the hero video, stroke icons, written from scratch (famease.in is "All rights reserved", no licence, so nothing was copied). No mute button: the printer MP4 has no audio track (checked with ffprobe), so a sound button would be misleading. Old text Play/Pause button is hidden. Footage credit and demo-only note untouched |
+
+Notes: the /#materials URL with the hero at the top in the screenshot is normal when the page is scrolled back up (the address bar keeps the hash). A direct load of /#materials lands on the section (checked).
