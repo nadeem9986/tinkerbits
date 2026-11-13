@@ -32,3 +32,9 @@ Scope: branch `modern-ui-2026-11` vs `main`. Reviewed 10 Nov 2026 by rendering t
 
 ## Pending at time of writing
 - Verification of what serves tinkerbits.in after merging to main (auto-deploy mapping unconfirmed).
+
+## Dark mode review (13 Nov 2026)
+- Toggle present in header on both pages, desktop and mobile (icon-only under 760px); `aria-pressed` and `aria-label` track the state.
+- Theme applies before first paint via a head script, so there is no light flash when dark is saved or preferred.
+- Rendered-pixel checks at 1440px and 390px in both themes on index and models: no horizontal overflow, contrast checked on text, cards, form inputs, catalogue and footer.
+- Light theme unchanged from the approved redesign.
