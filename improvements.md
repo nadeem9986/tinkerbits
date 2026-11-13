@@ -91,3 +91,9 @@ Every change Nadeem asks for is recorded here, in his words, with the date and w
 - Smoothness: single-pass displacement lens (was three passes plus blur and a scale animation). Devices with 4 or fewer CPU threads, 2GB or less memory, or reduced motion get a plain light blur instead of the lens.
 - Icons: arrows, play/pause and the menu button use one consistent stroke icon set; the menu icon turns into an X when open.
 - Cache: HTML links `polish.css?v=4` and `polish.js?v=4`, bump the number whenever those files change.
+
+## Menu control (13 Nov 2026)
+
+| When | Request | Outcome |
+|---|---|---|
+| 13 Nov 2026, 17:32 | "the 3 lines lines beside the tinkerbits is now become the burgermenu" / "make it" | Done on mobile: the three-bar logo mark opens and closes the menu and turns into an X; the separate Menu button is hidden. Desktop keeps inline links and the mark as part of the home link |
