@@ -189,6 +189,8 @@
   // Any failure falls back to a normal page load. No animation is used to hide it.
   var routeOf = function (u) { return (u.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '').replace(/\/+$/, '')) || '/'; };
   var shown = routeOf(location), busy = false;
+  var canon = function (u) { return routeOf(u) + u.search + u.hash; };
+  if (location.pathname !== routeOf(location)) history.replaceState(history.state, '', canon(location));
   var closeMenu = function () { if (oldMenu && oldMenu.getAttribute('aria-expanded') === 'true') oldMenu.click(); };
   var toHash = function (h, smooth) {
     if (!h || h === '#') { scrollTo({ top: 0, behavior: smooth && !reduce ? 'smooth' : 'auto' }); return; }
@@ -198,20 +200,20 @@
   function swapTo(u, push, y) {
     if (busy) return;
     if (routeOf(u) === shown) {
-      if (push && u.href !== location.href) { history.replaceState({ tb: 1, y: scrollY }, ''); history.pushState({ tb: 1 }, '', u.href); }
+      if (push && canon(u) !== location.pathname + location.search + location.hash) { history.replaceState({ tb: 1, y: scrollY }, ''); history.pushState({ tb: 1 }, '', canon(u)); }
       if (y != null) scrollTo(0, y); else toHash(u.hash, true);
       closeMenu();
       return;
     }
     busy = true;
     if (push) history.replaceState({ tb: 1, y: scrollY }, '');
-    fetch(u.href, { credentials: 'same-origin' }).then(function (r) { if (!r.ok) throw new Error('http'); return r.text(); }).then(function (html) {
+    fetch(routeOf(u) + u.search, { credentials: 'same-origin' }).then(function (r) { if (!r.ok) throw new Error('http'); return r.text(); }).then(function (html) {
       var d = new DOMParser().parseFromString(html, 'text/html');
       var nm = d.querySelector('main'), om = document.querySelector('main');
       if (!nm || !om) throw new Error('shape');
       var nf = d.querySelector('footer'), oldFoot = document.querySelector('footer');
       var code = Array.prototype.filter.call(d.body.querySelectorAll('script:not([src])'), function (s) { return !/menu-toggle|theme-toggle/.test(s.textContent); }).map(function (s) { return s.textContent; }).join('\n;\n');
-      if (push) history.pushState({ tb: 1 }, '', u.href);
+      if (push) history.pushState({ tb: 1 }, '', canon(u));
       document.title = d.title;
       om.replaceWith(document.adoptNode(nm));
       if (nf && oldFoot) oldFoot.replaceWith(document.adoptNode(nf));
