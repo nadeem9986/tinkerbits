@@ -215,7 +215,7 @@
     var sec = document.createElement('section'); sec.className = 'wrap tb-dir'; sec.setAttribute('aria-label', 'Where to find 3D models');
     var h = document.createElement('h2'); h.textContent = 'Find a model first'; sec.appendChild(h);
     var p = document.createElement('p'); p.className = 'tb-dir-lead';
-    p.textContent = 'Browse the popular model sites, download a design you like, then come back here and upload it for a print quote.';
+    p.textContent = 'Browse the popular model sites, download a design you like, then come back here to see how a private upload for a print quote will work.';
     sec.appendChild(p);
     var g = document.createElement('div'); g.className = 'tb-dir-grid';
     sites.forEach(function (s) {
@@ -231,7 +231,8 @@
     var n = document.createElement('p'); n.className = 'tb-dir-note';
     n.textContent = 'Before asking for a paid print, check the design\u2019s licence on the site you downloaded it from. Some designs are for personal use only. These sites are separate from Tinkerbits.';
     sec.appendChild(n);
-    var back = document.createElement('a'); back.className = 'text-link'; back.href = '/#quote'; back.textContent = 'Already have a file? Upload it for a quote \u2197'; sec.appendChild(back);
+    var demo = document.createElement('p'); demo.className = 'tb-dir-note tb-dir-demo'; demo.textContent = 'Quote uploads are a preview for now: no files are uploaded or stored, and the quote service is not live yet.'; sec.appendChild(demo);
+    var back = document.createElement('a'); back.className = 'text-link'; back.href = '/#quote'; back.textContent = 'See the upload preview \u2197'; sec.appendChild(back);
     cat.parentNode.insertBefore(sec, cat);
   }
   fixDir();
