@@ -182,6 +182,53 @@
   }
   }
   fixVideo();
+  function fixDemo() {
+    // Popular models feed: renders only real entries from /trending.json. No file, empty file or bad data shows nothing.
+    var grid = document.getElementById('models-grid');
+    if (grid && !document.querySelector('.tb-feed')) {
+      fetch('/trending.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+        if (!d || !Array.isArray(d.items) || !d.items.length || document.querySelector('.tb-feed')) return;
+        var sec = document.createElement('section'); sec.className = 'wrap tb-feed'; sec.setAttribute('aria-label', 'Popular models');
+        var h = document.createElement('h2'); h.textContent = 'Popular right now'; sec.appendChild(h);
+        var p = document.createElement('p'); p.className = 'tb-feed-note';
+        p.textContent = 'Listings from ' + (d.source || 'a public source') + ', shown with credit and a link to the original page. Files stay on the original site. Print eligibility depends on each design\u2019s licence.';
+        sec.appendChild(p);
+        var g = document.createElement('div'); g.className = 'tb-feed-grid';
+        d.items.slice(0, 12).forEach(function (m) {
+          if (!m || !m.title || !/^https:\/\//.test(m.url || '')) return;
+          var a = document.createElement('article'); a.className = 'model-card tb-feed-card';
+          if (/^https:\/\//.test(m.image || '')) { var im = document.createElement('img'); im.src = m.image; im.alt = m.title; im.loading = 'lazy'; im.referrerPolicy = 'no-referrer'; a.appendChild(im); }
+          var b = document.createElement('div'); b.className = 'model-body';
+          var h3 = document.createElement('h3'); h3.textContent = m.title; b.appendChild(h3);
+          if (m.description) { var d2 = document.createElement('p'); d2.textContent = String(m.description).slice(0, 160); b.appendChild(d2); }
+          var meta = document.createElement('span'); meta.textContent = [m.creator ? 'by ' + m.creator : '', m.license ? 'Licence: ' + m.license : 'Licence: check on source'].filter(Boolean).join(' \u00B7 '); b.appendChild(meta);
+          var l = document.createElement('a'); l.href = m.url; l.target = '_blank'; l.rel = 'noopener noreferrer'; l.textContent = 'View original \u2197'; b.appendChild(l);
+          if (m.print_ok === true) { var q = document.createElement('a'); q.href = '/?model=' + encodeURIComponent(m.title) + '#quote'; q.textContent = 'Discuss this print \u2197'; b.appendChild(q); }
+          a.appendChild(b); g.appendChild(a);
+        });
+        if (!g.children.length) return;
+        sec.appendChild(g);
+        var anchor = document.querySelector('.catalogue'); if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(sec, anchor);
+      }).catch(function () {});
+    }
+    // Private upload concept on the quote form: file stays in the browser, nothing is sent.
+    var qf = document.getElementById('quote-form');
+    if (qf && !qf.querySelector('.tb-up')) {
+      var wrap = document.createElement('div'); wrap.className = 'tb-up';
+      wrap.innerHTML = '<label class="tb-up-l">Private file upload <span class="optional">(concept)</span><input type="file" accept=".stl,.3mf,.obj,.step,.stp" aria-describedby="tb-up-n"></label><p class="form-note" id="tb-up-n">Preview of how this will work after sign-in. Sign-in is not built yet, so the file stays in your browser and is not uploaded or saved.</p><p class="tb-up-s" role="status"></p>';
+      var fl = qf.querySelector('input[name="file"]'); var host = fl ? fl.closest('label') : null;
+      if (host && host.parentNode) host.parentNode.insertBefore(wrap, host.nextSibling); else qf.insertBefore(wrap, qf.querySelector('button[type="submit"]'));
+      var inp = wrap.querySelector('input'), st = wrap.querySelector('.tb-up-s');
+      inp.addEventListener('change', function () {
+        var f = inp.files && inp.files[0];
+        if (!f) { st.textContent = ''; return; }
+        if (!/\.(stl|3mf|obj|step|stp)$/i.test(f.name)) { st.textContent = 'Choose an STL, 3MF, OBJ or STEP file.'; inp.value = ''; return; }
+        var mb = f.size / 1048576;
+        st.textContent = f.name + ' (' + (mb >= 0.1 ? mb.toFixed(1) + ' MB' : Math.max(1, Math.round(f.size / 1024)) + ' KB') + ') selected. In the real flow this would go to a private quote request. Here it stays on your device.';
+      });
+    }
+  }
+  fixDemo();
 
   function reveal() {
   // Reveal on scroll: below-the-fold blocks ease in once. Content stays visible if anything fails.
@@ -236,7 +283,7 @@
       shown = routeOf(u);
       closeMenu();
       var sc = document.createElement('script'); sc.textContent = '{\n' + code + '\n}'; document.body.appendChild(sc); sc.remove();
-      iconify(document.body); fixVideo(); reveal();
+      iconify(document.body); fixVideo(); fixDemo(); reveal();
       var qf = document.getElementById('quote-form');
       if (qf) {
         var mdl = new URLSearchParams(location.search).get('model');
