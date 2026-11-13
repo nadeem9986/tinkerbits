@@ -129,3 +129,11 @@ html[data-theme="dark"] .location>span{color:var(--g-accent2)}
 html.tb-lens-ready .site-header{-webkit-backdrop-filter:url(#tb-lens) saturate(1.2);backdrop-filter:url(#tb-lens) saturate(1.2)}
 html.tb-lite .site-header{-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2)}
 html:not([data-theme="dark"]) .site-header:not([data-over="dark"]){background:rgba(255,255,255,.26)}
+
+
+/* Touch: no sticky hover ring on the theme icon. Hover styling only for real pointers; keyboard focus-visible outline is untouched. */
+@media (hover:none),(pointer:coarse){
+.site-header .theme-toggle:hover{transform:none;color:var(--nv-text);border-color:rgba(21,85,237,.22)}
+.site-header[data-over="dark"] .theme-toggle:hover,html[data-theme="dark"] .site-header .theme-toggle:hover{border-color:rgba(255,255,255,.22)}
+}
+.theme-toggle:focus:not(:focus-visible){outline:none}
