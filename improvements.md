@@ -48,9 +48,14 @@ Every change Nadeem asks for is recorded here, in his words, with the date and w
 | 13 Nov 2026, 15:59 | "Also add dark mode" | Done, live |
 | 13 Nov 2026, 16:14 | "Make a improvements md file and whatever i say to u to make changes store it there also" | Done: this log |
 | 13 Nov 2026, 16:14 | "The navbar should have the squarerounded corners and navbar should be on the top and vosible" | Done: rounded-rectangle navbar (16px radius, 14px on mobile) that stays fixed at the top while scrolling |
-| 13 Nov 2026, 16:15 | "The navbat should have the liquidglass effect" | Done: translucent frosted-glass navbar (backdrop blur, soft highlight edge) in light and dark themes, with a solid fallback where blur is unsupported |
+| 13 Nov 2026, 16:15 | "The navbat should have the liquidglass effect" | Done: translucent frosted-glass navbar (backdrop blur, soft highlight edge) in light and dark themes, with a solid fallback where blur is unsupported. Superseded at 16:44 below |
+| 13 Nov 2026, 16:44 | "That is frost effect i wanted liquid glass effect" | Done: navbar rebuilt as true liquid glass - real refraction of the content behind the bar, not just blur |
+| 13 Nov 2026, 16:47 | "https://freefrontend.com/css-liquid-glass/ From this u see the code and add the liquid glass effect to the top navbar" | Done: adapted the reference's technique (backdrop-filter + SVG feImage displacement map with split-channel feDisplacementMap for chromatic refraction, per Ignacio Correia's "Liquid Glass Distortion Card" demo) |
 
-## Navbar (13 Nov 2026)
+## Navbar (13 Nov 2026, liquid glass revision)
 - Floating rounded-rectangle bar, sticky at the top of both pages, always visible while scrolling.
-- Liquid-glass look: translucent gradient fill, backdrop blur and saturation, light inner edge and top sheen. Dark theme has its own tint.
+- True liquid glass: the bar refracts and warps the page content behind it (SVG displacement-map filter referenced from `backdrop-filter: url(#tb-liquid)`), with split RGB channels for a subtle chromatic edge, specular rim highlights and a top sheen. Technique adapted from the FreeFrontend liquid-glass reference Nadeem sent (Ignacio Correia's distortion demo); the displacement map is self-generated and embedded as a data URI, no external assets.
+- Browser support: Chrome and Edge render the full refraction. Safari and Firefox do not support SVG filter references in backdrop-filter; there the bar falls back to a very light 4px blur with low tint (clear glass, not frost), and to a solid bar where no backdrop filter exists at all.
+- Dark theme uses a darker glass tint so white nav text stays readable over bright refracted content.
 - Mobile: smaller bar, menu drops below it with a gap; anchor links offset so headings are not hidden behind the bar.
+
