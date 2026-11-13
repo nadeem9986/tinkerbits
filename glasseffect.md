@@ -27,7 +27,16 @@ Make the site's top navbar a floating liquid-glass bar with real lens refraction
 - No `backdrop-filter` at all: a solid bar.
 
 **Dark mode**
-- Same structure with darker tints, a stronger navy glass fill so white nav text stays readable over bright refracted content, and inverted halo colors.
+- Same structure with graphite tints (about rgba(24,27,34,.46) to rgba(14,16,20,.34)), a stronger fill on mobile so white nav text stays readable over bright refracted content, and inverted halo colors (near-black).
+- No grey border: the dark bar has a transparent border and only a faint blue highlight (`inset 0 1px 0 rgba(143,178,255,.3)`) on its top edge, with a deeper black drop shadow.
+- Dark page palette is graphite with electric blue accents: page #0e1013, cards #171a20, raised #1e222a, text #eceff5, muted #adb5c3, accent #6f9bff.
+
+**Theme switch**
+- Icon-only 44px round glass button (moon in light, sun in dark) with a short spin when it changes. Keep an `aria-label` and `aria-pressed`.
+
+**Scroll behaviour (polish.js + polish.css)**
+- After about 24px of scroll the bar scales to 0.975 (0.985 on mobile) with a spring-like ease and a deeper shadow, and a 2px blue progress line along its bottom edge shows how far down the page you are. No layout shift, no scroll hijacking, off under `prefers-reduced-motion`.
+- Below-the-fold blocks fade and rise 26px once as they enter the viewport, staggered in small groups.
 
 Verified rendering in Chrome and Edge (full refraction with chromatic edge); Safari/Firefox get the clear-glass fallback.
 
