@@ -61,3 +61,18 @@ Every change Nadeem asks for is recorded here, in his words, with the date and w
 - Mobile: smaller bar, menu drops below it with a gap; anchor links offset so headings are not hidden behind the bar.
 - Readability refinement (same day): soft text halo on the logo and nav labels, a more solid menu button, and a slightly stronger glass tint on small screens, so the brand and Menu stay crisp over brightly refracted content without losing the lens effect.
 
+
+## Requests (13 Nov 2026, polish round)
+
+| When | Request | Outcome |
+|---|---|---|
+| 13 Nov 2026, 17:07 | "improve the scroll effect make it premium and in dark mode the navbar i shaving the grey effectin the border fix that dark  mode button should be change to an icon the dark mode colour combo is not looking good change it to some different colour" | Done: see "Polish round" below |
+| 13 Nov 2026, 17:08 | "check the colour contrast in both modes and balance it overall" | Done: contrast audited on both pages in both themes, fixes in polish.css |
+
+## Polish round (13 Nov 2026)
+- New files `polish.css` and `polish.js`, loaded after the inline styles on `index.html` and `models.html`. Backup branch: `backup/pre-polish-2026-11-13`.
+- Scroll: the navbar condenses slightly after a short scroll (scale with a soft spring easing, deeper shadow) and shows a thin blue reading-progress line. Below-the-fold sections, cards and footer columns ease in once as they enter view. No scroll hijacking, native scrolling and smooth anchors unchanged. Turned off with `prefers-reduced-motion`.
+- Dark navbar: the grey border and grey inner rim are gone. The glass now has a transparent border and only a faint blue highlight on its top edge.
+- Theme switch: icon-only round button (moon in light mode, sun in dark mode, with a short spin on change). Its accessible name and pressed state still update.
+- Dark palette: changed from navy to graphite (#0e1013 page, #171a20 cards, #1e222a raised) with electric blue accents (#6f9bff text accent, #2f6bff buttons). Text #eceff5, muted #adb5c3, faint #939cac. The browser theme-color follows it.
+- Contrast: audited every visible text element on both pages in both themes. Failures found (muted grey labels, footer text, form notes, "(optional)", model index labels, filter button on blue, small arrows) were fixed so normal text meets 4.5:1. Focus outlines added for keyboard users in both themes. Light mode muted text is now #4e5a72.
