@@ -224,3 +224,6 @@ html{scroll-behavior:auto!important}
 
 /* v30: sections fade in faster (about half the time, shorter stagger), so a section reached by a link or a scroll is not blank for a second. Same effect, same movement. */
 .tb-reveal{transition:opacity .42s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);transition-delay:calc(var(--tb-d,0s)*.5)}
+
+/* v31: content on screen after a link jump shows at once (class set by polish.js). Normal scroll fade-in is unchanged. */
+.tb-reveal.tb-now{transition:none!important}
