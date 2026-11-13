@@ -193,3 +193,14 @@ html:not([data-theme="dark"]) .site-header:not([data-over="dark"]){background:rg
 /* v23: example model cards, search and filters removed from /models; the directory is the page body */
 main>.catalogue{display:none}
 .tb-dir{padding-bottom:72px}
+
+/* v24: seven-slit brand mark (inline SVG, same slant and footprint as the old three bars) */
+.brand-mark .tb-mark{display:block;overflow:visible;fill:#1555ed;flex:none}
+html[data-theme="dark"] .brand-mark .tb-mark,.site-header[data-over="dark"] .brand-mark .tb-mark{fill:#5b8cff}
+.brand-mark .tb-mark path{transform-box:fill-box;transform-origin:center;transform:translateY(0) rotate(0deg) skewY(0deg)}
+@media (max-width:760px){
+  .brand-menu .brand-mark .tb-mark path{transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .25s ease}
+  .brand-menu[aria-expanded="true"] .brand-mark .tb-mark path:nth-child(1){transform:translateY(10.8px) rotate(45deg) skewY(21deg)}
+  .brand-menu[aria-expanded="true"] .brand-mark .tb-mark path:nth-child(7){transform:translateY(-10.8px) rotate(-45deg) skewY(21deg)}
+  .brand-menu[aria-expanded="true"] .brand-mark .tb-mark path:nth-child(n+2):nth-child(-n+6){opacity:0;transform:scaleX(.2)}
+}
