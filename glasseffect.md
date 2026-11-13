@@ -1,44 +1,41 @@
 # Liquid Glass Navbar - Reusable Prompt
 
-Use the prompt below to recreate the Tinkerbits liquid-glass navbar on any site. It describes the actual implementation shipped in this repo (13 Nov 2026), not generic frosted glass.
+Use the prompt below to recreate the Tinkerbits navbar on any site. It describes the implementation shipped in this repo (final version, 13 Nov 2026): clear liquid glass, no frost or fog, text that adapts to what is behind it, and a logo that fills with colour as you scroll.
 
 ---
 
-Make the site's top navbar a floating liquid-glass bar with real lens refraction of the content behind it, not a frosted blur.
+Make the site's top navbar a floating clear-glass bar that bends the content behind it, with a logo that doubles as the scroll-progress indicator.
 
 **Layout**
-- A rounded-rectangle bar (16px radius, 14px on mobile), sticky at the top with a small gap (12px desktop, 8px mobile), always visible while scrolling, high z-index.
-- Add `scroll-padding-top` on the html element (110px desktop, 96px mobile) so anchor headings never hide behind the bar.
+- Rounded rectangle (16px radius, 14px on mobile), sticky at the top with a small gap (12px desktop, 8px mobile), always visible, high z-index. Add `scroll-padding-top` on html (110px desktop, 96px mobile) so anchor headings never hide behind it.
+- No underline, progress line or border strip anywhere on the bar.
 
-**Refraction (the liquid part)**
-- Add an inline SVG filter to the page (e.g. `<filter id="liquid-glass">`) containing a displacement map: an `feImage` whose `href` is a data-URI PNG encoding a radial lens field - neutral gray (128,128) in the center so the middle stays sharp, with red/green channels pushing outward toward the edges so the rim bends like curved glass. Generate the map programmatically; no external assets.
-- Displace the backdrop once per RGB channel with slightly different scales (R 18, G 22, B 26), isolate each channel with `feColorMatrix`, recombine with two `feBlend mode="screen"` operations for a subtle chromatic fringe, and finish with a small `feGaussianBlur` (about 0.7px).
-- Apply it to the bar with `backdrop-filter: url(#liquid-glass) saturate(1.35)`, gated behind `@supports ((backdrop-filter: url(#liquid-glass)) or (-webkit-backdrop-filter: url(#liquid-glass)))`.
+**Glass (clear, not frosted)**
+- Background is almost clear: about `rgba(255,255,255,.12)` in light theme with a 1px blue-tinted hairline border (`rgba(21,85,237,.16)`), a soft drop shadow and one thin top highlight (`inset 0 1px 0 rgba(255,255,255,.55)`).
+- No white sheen overlay, no radial glow, no text-shadow halos on the logo or links. The previous milky haze and glow looked muddy and are intentionally gone.
 
-**Glass body**
-- Nearly clear tint: light theme uses a soft white gradient at low alpha; dark theme uses a deep navy gradient. Add a specular top sheen (`::before` vertical gradient), a bright inset rim light plus soft outer drop shadow (`::after` inset box-shadows), and keep the bar's children above those layers (`position: relative; z-index: 1`).
+**Refraction (single pass, cheap)**
+- Inline SVG filter `#tb-lens` built in JS from a data-URI displacement map `feImage` (radial lens: neutral gray in the middle, pushing outward at the rim) and ONE `feDisplacementMap` (scale 16, R/G channels). No chromatic split and no extra blur, which keeps text behind the bar clean and scrolling cheap.
+- Apply with `backdrop-filter: url(#tb-lens) saturate(1.15)` once the filter exists (html class `tb-lens-ready`).
+- Low-power devices (4 or fewer CPU threads, 2GB or less memory) and reduced-motion users get `blur(8px) saturate(1.2)` instead (html class `tb-lite`). Safari and Firefox cannot use SVG filters in backdrop-filter and also fall back to plain clear blur. No backdrop-filter support: a solid bar.
 
-**Readability over refracted content**
-- Soft `text-shadow` halo on the logo and nav labels (white halo in light theme, dark halo in dark theme) so foreground text stays crisp while the background warps.
-- Give small controls (menu/theme buttons) a more solid translucent background, and slightly raise the glass tint on screens under 760px.
+**Text adapts to the background**
+- On scroll (only after a 10px change) JS samples three points behind the bar's centre line, finds each point's opaque background colour and, if at least two are dark (luminance below 0.3), sets `data-over="dark"` on the header. Then light theme switches to white text, a deep clear tint (`rgba(8,12,22,.34)`), translucent white control buttons and a white "Start a project" button. Dark theme always uses that dark state.
 
-**Fallbacks**
-- Safari and Firefox (no SVG filter reference in `backdrop-filter`): a very light `blur(4px)` with a low tint - clear glass, never heavy frost.
-- No `backdrop-filter` at all: a solid bar.
+**Logo as progress**
+- Wrap the "tinkerbits" text in a span. Its text colour is transparent and a two-layer background clips to the text: a base colour layer (navy in light, near-white in dark) whose transparent part grows from the left as `--tb-p` (scroll progress 0 to 1, set on the header), over a gradient (blue to violet to pink to orange). At the top the logo is plain; at the bottom of the page it is fully colourful. Only the CSS variable changes while scrolling.
 
-**Dark mode**
-- Same structure with graphite tints (about rgba(24,27,34,.46) to rgba(14,16,20,.34)), a stronger fill on mobile so white nav text stays readable over bright refracted content, and inverted halo colors (near-black).
-- No grey border: the dark bar has a transparent border and only a faint blue highlight (`inset 0 1px 0 rgba(143,178,255,.3)`) on its top edge, with a deeper black drop shadow.
-- Dark page palette is graphite with electric blue accents: page #0e1013, cards #171a20, raised #1e222a, text #eceff5, muted #adb5c3, accent #6f9bff.
+**Theme switch and icons**
+- Icon-only 44px round button (moon in light, sun in dark), with `aria-label` and `aria-pressed`.
+- One stroke icon set via CSS masks that inherit text colour: arrow-up-right, arrow-right, play, pause, and a two-bar menu icon that turns into an X when open. Text glyphs (arrows, +, play and pause symbols) are replaced.
 
-**Theme switch**
-- Icon-only 44px round glass button (moon in light, sun in dark) with a short spin when it changes. Keep an `aria-label` and `aria-pressed`.
+**Dark theme**
+- Graphite, not navy: page #0e1013, cards #171a20, raised #1e222a, text #eceff5, muted #adb5c3, accent #6f9bff, buttons #2f6bff. The dark bar has a transparent border (no grey edge) and only a faint blue top highlight.
 
-**Scroll behaviour (polish.js + polish.css)**
-- After about 24px of scroll the bar scales to 0.975 (0.985 on mobile) with a spring-like ease and a deeper shadow, and a 2px blue progress line along its bottom edge shows how far down the page you are. No layout shift, no scroll hijacking, off under `prefers-reduced-motion`.
-- Below-the-fold blocks fade and rise 26px once as they enter the viewport, staggered in small groups.
+**Scroll behaviour**
+- Native scrolling only, no hijacking. Below-the-fold blocks fade and rise 26px once as they enter view (off for reduced motion).
 
-Verified rendering in Chrome and Edge (full refraction with chromatic edge); Safari/Firefox get the clear-glass fallback.
+Verified in Chrome with real scrolling on desktop and mobile in both themes.
 
 ---
 
