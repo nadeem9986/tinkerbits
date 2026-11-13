@@ -264,10 +264,12 @@
   if (location.pathname !== routeOf(location)) history.replaceState(history.state, '', canon(location));
   var closeMenu = function () { if (oldMenu && oldMenu.getAttribute('aria-expanded') === 'true') oldMenu.click(); };
   // In-page jumps (Materials, Studio, Quote) land at once. A long animated scroll over the video and glass header felt slow, so there is none.
+  // After a link jump, whatever is already on screen shows at once (no fade wait). Ordinary scrolling keeps the fade-in.
+  var revealNow = function () { Array.prototype.forEach.call(document.querySelectorAll('.tb-reveal:not(.tb-in)'), function (e) { var r = e.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) { e.classList.add('tb-now'); e.classList.add('tb-in'); } }); };
   var toHash = function (h, smooth) {
-    if (!h || h === '#') { scrollTo({ top: 0, behavior: 'auto' }); return; }
+    if (!h || h === '#') { scrollTo({ top: 0, behavior: 'auto' }); revealNow(); return; }
     var t = document.getElementById(decodeURIComponent(h.slice(1)));
-    if (t) t.scrollIntoView({ behavior: 'auto', block: 'start' });
+    if (t) { t.scrollIntoView({ behavior: 'auto', block: 'start' }); revealNow(); }
   };
   // Page cache: the other route is fetched ahead of the click (idle, hover, touch) so the swap does not wait on the network. Skipped when Save-Data is on.
   var pcache = {};
@@ -313,7 +315,7 @@
         qf.addEventListener('submit', function (e) { e.preventDefault(); var st = document.querySelector('.form-status'); if (st) st.textContent = 'Demo only. Nothing was sent, uploaded or saved.'; });
       }
       var yr = document.getElementById('year'); if (yr) yr.textContent = new Date().getFullYear();
-      var land = function () { if (y != null) scrollTo({ top: y, behavior: 'instant' }); else if (u.hash && u.hash !== '#') { var t = document.getElementById(decodeURIComponent(u.hash.slice(1))); if (t) t.scrollIntoView({ behavior: 'instant', block: 'start' }); } else scrollTo({ top: 0, behavior: 'instant' }); };
+      var land = function () { if (y != null) scrollTo({ top: y, behavior: 'instant' }); else if (u.hash && u.hash !== '#') { var t = document.getElementById(decodeURIComponent(u.hash.slice(1))); if (t) { t.scrollIntoView({ behavior: 'instant', block: 'start' }); revealNow(); } } else { scrollTo({ top: 0, behavior: 'instant' }); revealNow(); } };
       land(); requestAnimationFrame(land); setTimeout(land, 250);
       probe(true);
       busy = false;
