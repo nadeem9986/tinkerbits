@@ -148,3 +148,4 @@ html:not([data-theme="dark"]) .site-header:not([data-over="dark"]){background:rg
 .tb-vc-btn.is-paused .i-play{display:block}
 .tb-vc-btn.is-paused .i-pause{display:none}
 .video-toggle{display:none!important}
+@media (max-width:560px){.tb-vc{left:auto;right:14px;transform:none}}
