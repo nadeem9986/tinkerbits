@@ -186,3 +186,6 @@ html:not([data-theme="dark"]) .site-header:not([data-over="dark"]){background:rg
 .tb-dir-card .model-body{display:flex;flex-direction:column;gap:6px}
 .tb-dir-card .model-body p{margin:0}
 .tb-dir-note{margin:18px 0 10px;max-width:62ch;font-size:14px;opacity:.75}
+
+/* v21: directory cards: drop the inherited 65px description min-height */
+.tb-dir-card .model-body p{min-height:0}
