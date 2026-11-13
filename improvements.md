@@ -97,3 +97,12 @@ Every change Nadeem asks for is recorded here, in his words, with the date and w
 | When | Request | Outcome |
 |---|---|---|
 | 13 Nov 2026, 17:32 | "the 3 lines lines beside the tinkerbits is now become the burgermenu" / "make it" | Done on mobile: the three-bar logo mark opens and closes the menu and turns into an X; the separate Menu button is hidden. Desktop keeps inline links and the mark as part of the home link |
+
+
+## Round: navigation, lens and legibility (Nov 13, 5:41-5:46 PM IST)
+
+| Request (user, verbatim) | What changed |
+|---|---|
+| "why is it rendering the page again if i click explore models and the other options is should just navigate there not reload the page there" | polish.js now routes clicks between / and /models client-side: fetches the target page, swaps main and footer, keeps header, theme, menu and scroll listeners, updates title and history (back/forward and direct links work, scroll restored). Same-page links (index.html#materials) scroll in place. Any failure falls back to a normal page load. |
+| "why did u remove the navbar liquidglass effect it became the frost glass effect" | Removed the blur from the lens path (it had been added back for legibility and made it frosted). Lens refraction strength 16 to 30. The core/memory/reduced-motion heuristic is gone: every Chromium browser gets the lens. Non-Chromium browsers (Safari, iOS, Firefox) cannot render SVG backdrop filters and get the clear blur fallback. |
+| Mobile menu review | Escape, link tap, brand-mark tap and outside tap all close the menu; the label follows aria-expanded. |
