@@ -76,3 +76,18 @@ Every change Nadeem asks for is recorded here, in his words, with the date and w
 - Theme switch: icon-only round button (moon in light mode, sun in dark mode, with a short spin on change). Its accessible name and pressed state still update.
 - Dark palette: changed from navy to graphite (#0e1013 page, #171a20 cards, #1e222a raised) with electric blue accents (#6f9bff text accent, #2f6bff buttons). Text #eceff5, muted #adb5c3, faint #939cac. The browser theme-color follows it.
 - Contrast: audited every visible text element on both pages in both themes. Failures found (muted grey labels, footer text, form notes, "(optional)", model index labels, filter button on blue, small arrows) were fixed so normal text meets 4.5:1. Focus outlines added for keyboard users in both themes. Light mode muted text is now #4e5a72.
+
+## Requests (13 Nov 2026, navbar finish)
+
+| When | Request | Outcome |
+|---|---|---|
+| 13 Nov 2026, 17:21 | "i dont like the onderlne on the navbar how about thus whil im scrolling the tinkerbitd logo will become colourful like soem colour as a progress of teh site all the icons should b modern" | Done: underline removed, logo fills with colour as scroll progress, icons replaced with one modern stroke set |
+| 13 Nov 2026, 17:21 | "where r u in the smoothing process it sstill laggy" | Done: lens filter reduced from three displacement passes to one, bar scale/transition animation removed, lighter blur on low-power devices |
+| 13 Nov 2026, 17:23 | "look how bad the navbar is loking here i want the whit efog like shade to b removed and the overall look should b perfect" | Done: white sheen, glow and text halos removed. Bar is clear glass with a subtle edge, and nav text switches to light over dark sections |
+
+## Navbar finish (13 Nov 2026)
+- Clear glass: background about 12% white, thin blue hairline, no white sheen or glow, no text halos. Text colour adapts: light text and a deep clear tint over dark sections (polish.js samples what is behind the bar), dark text over light ones.
+- Logo progress: the "tinkerbits" wordmark fills left to right with a blue, violet, pink, orange gradient as you scroll. The old underline progress line is removed.
+- Smoothness: single-pass displacement lens (was three passes plus blur and a scale animation). Devices with 4 or fewer CPU threads, 2GB or less memory, or reduced motion get a plain light blur instead of the lens.
+- Icons: arrows, play/pause and the menu button use one consistent stroke icon set; the menu icon turns into an X when open.
+- Cache: HTML links `polish.css?v=4` and `polish.js?v=4`, bump the number whenever those files change.
