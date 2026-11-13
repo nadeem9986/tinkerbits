@@ -234,6 +234,7 @@
     var demo = document.createElement('p'); demo.className = 'tb-dir-note tb-dir-demo'; demo.textContent = 'Quote uploads are a preview for now: no files are uploaded or stored, and the quote service is not live yet.'; sec.appendChild(demo);
     var back = document.createElement('a'); back.className = 'text-link'; back.href = '/#quote'; back.textContent = 'See the upload preview \u2197'; sec.appendChild(back);
     cat.parentNode.insertBefore(sec, cat);
+    cat.remove(); // example cards, search and filters were removed at the owner's request
   }
   fixDir();
 
