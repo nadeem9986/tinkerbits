@@ -219,7 +219,8 @@
       closeMenu();
       var sc = document.createElement('script'); sc.textContent = '{\n' + code + '\n}'; document.body.appendChild(sc); sc.remove();
       iconify(document.body); fixVideo(); reveal();
-      if (y != null) scrollTo(0, y); else if (u.hash) toHash(u.hash, false); else scrollTo(0, 0);
+      var land = function () { if (y != null) scrollTo({ top: y, behavior: 'instant' }); else if (u.hash && u.hash !== '#') { var t = document.getElementById(decodeURIComponent(u.hash.slice(1))); if (t) t.scrollIntoView({ behavior: 'instant', block: 'start' }); } else scrollTo({ top: 0, behavior: 'instant' }); };
+      land(); requestAnimationFrame(land); setTimeout(land, 250);
       probe(true);
       busy = false;
     }).catch(function () { busy = false; location.href = u.href; });
