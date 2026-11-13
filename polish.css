@@ -218,3 +218,6 @@ html[data-theme="dark"] .brand-mark .tb-lg,.site-header[data-over="dark"] .brand
 
 /* v28: no decorative dots - the blue label marker and the blue full stop after the wordmark (header, footer, menu). Text punctuation is untouched. To bring the wordmark dot back, delete .brand-dot from this rule. */
 .status-dot,.brand-dot{display:none!important}
+
+/* v29: in-page links (Materials, Studio, Quote) jump straight to the section. No long animated scroll. */
+html{scroll-behavior:auto!important}
