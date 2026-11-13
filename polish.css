@@ -215,3 +215,6 @@ html[data-theme="dark"] .brand-mark .tb-lg,.site-header[data-over="dark"] .brand
   .brand-menu[aria-expanded="true"] .brand-mark .tb-lg .tb-t{opacity:0;transform:scale(.6)}
   .brand-menu[aria-expanded="true"] .brand-mark .tb-lg .tb-x{opacity:1;transform:scale(1)}
 }
+
+/* v28: no decorative dots - the blue label marker and the blue full stop after the wordmark (header, footer, menu). Text punctuation is untouched. To bring the wordmark dot back, delete .brand-dot from this rule. */
+.status-dot,.brand-dot{display:none!important}
