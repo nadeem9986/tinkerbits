@@ -35,14 +35,16 @@ html[data-theme="dark"] .site-header .brand,html[data-theme="dark"] .site-header
 .site-header .menu-toggle{background:rgba(255,255,255,.5);border-color:rgba(21,85,237,.2)}
 /* over dark content (set by polish.js) and in dark theme: light text on a deep clear tint */
 html[data-theme="dark"] .site-header,.site-header[data-over="dark"]{--nv-text:#f4f7ff;--nv-base:#f4f7ff;--nv-c1:#5b8cff;--nv-c2:#9b7bff;--nv-c3:#ff7ab8;--nv-c4:#ffb85c;
-  background:rgba(8,12,22,.34);border-color:rgba(255,255,255,.10);box-shadow:0 12px 32px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.14)}
-html[data-theme="dark"] .site-header{background:rgba(14,16,20,.40);border-color:transparent;box-shadow:0 14px 34px rgba(0,0,0,.5),inset 0 1px 0 rgba(143,178,255,.20)}
+  background:rgba(8,12,22,.50);border-color:rgba(255,255,255,.10);box-shadow:0 12px 32px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.14)}
+html[data-theme="dark"] .site-header{background:rgba(14,16,20,.58);border-color:transparent;box-shadow:0 14px 34px rgba(0,0,0,.5),inset 0 1px 0 rgba(143,178,255,.20)}
 .site-header[data-over="dark"] .theme-toggle,.site-header[data-over="dark"] .menu-toggle,
 html[data-theme="dark"] .site-header .menu-toggle,html[data-theme="dark"] .site-header .theme-toggle{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22)}
 @media(min-width:761px){.site-header[data-over="dark"] .nav-cta{background:#fff;color:#0a1630}}
 html[data-theme="dark"] .brand-dot,.site-header[data-over="dark"] .brand-dot{color:#6f9bff}
 html[data-theme="dark"] .brand-mark i,.site-header[data-over="dark"] .brand-mark i{background:#5b8cff}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.site-header{background:#f4f7ff}html[data-theme="dark"] .site-header,.site-header[data-over="dark"]{background:#171a20}}
+@media(max-width:760px){html[data-theme="dark"] .site-header,.site-header[data-over="dark"]{background:rgba(10,13,22,.66)}html[data-theme="dark"] .site-header{background:rgba(14,16,20,.68)}}
+
 /* logo wordmark fills with colour as the page scrolls (--tb-p is 0 to 1, set by polish.js) */
 .tb-word{color:transparent;-webkit-text-fill-color:transparent;padding-bottom:.08em;
   background-image:linear-gradient(90deg,transparent calc(var(--tb-p,0)*112% - 12%),var(--nv-base) calc(var(--tb-p,0)*112%)),linear-gradient(90deg,var(--nv-c1),var(--nv-c2) 38%,var(--nv-c3) 72%,var(--nv-c4));
