@@ -126,6 +126,6 @@ html[data-theme="dark"] .location>span{color:var(--g-accent2)}
 }
 
 /* ---------- legibility v8: clear blur keeps foreground/background from colliding (no milky fog) ---------- */
-html.tb-lens-ready .site-header{-webkit-backdrop-filter:url(#tb-lens) blur(9px) saturate(1.15);backdrop-filter:url(#tb-lens) blur(9px) saturate(1.15)}
+html.tb-lens-ready .site-header{-webkit-backdrop-filter:url(#tb-lens) saturate(1.2);backdrop-filter:url(#tb-lens) saturate(1.2)}
 html.tb-lite .site-header{-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2)}
-html:not([data-theme="dark"]) .site-header:not([data-over="dark"]){background:rgba(255,255,255,.34)}
+html:not([data-theme="dark"]) .site-header:not([data-over="dark"]){background:rgba(255,255,255,.26)}
