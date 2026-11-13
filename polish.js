@@ -128,8 +128,9 @@
 
   // Modern icons: swap text glyphs for one consistent stroke icon set.
   function icon(cls) { var i = document.createElement('i'); i.className = 'tb-i ' + cls; i.setAttribute('aria-hidden', 'true'); return i; }
+  function iconify(root) {
   var map = { '\u2197': 'tb-i-ne', '\u2192': 'tb-i-e' };
-  var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+  var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
     acceptNode: function (t) { return /[\u2197\u2192]/.test(t.nodeValue) && !t.parentElement.closest('script,style,svg,.tb-i') ? 1 : 2; }
   });
   var nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
@@ -141,11 +142,14 @@
     });
     t.parentNode.replaceChild(frag, t);
   });
+  }
+  iconify(document.body);
   var mt = document.querySelector('.menu-toggle');
   if (mt) {
     var sp = mt.querySelector('span');
     if (sp && sp.textContent.trim() === '+') { sp.className = 'tb-menu'; sp.textContent = ''; sp.setAttribute('aria-hidden', 'true'); }
   }
+  function fixVideo() {
   var vt = document.querySelector('.video-toggle');
   if (vt) {
     var fixVid = function () {
@@ -160,7 +164,10 @@
     new MutationObserver(fixVid).observe(vt, { childList: true, characterData: true, subtree: true });
     fixVid();
   }
+  }
+  fixVideo();
 
+  function reveal() {
   // Reveal on scroll: below-the-fold blocks ease in once. Content stays visible if anything fails.
   if (!reduce && 'IntersectionObserver' in window) {
     var sel = '.section-heading,.library,.material-grid>*,.material-object,.discipline-strip,.quote-layout>*,.catalogue-controls,.model-card,.catalogue-note,.footer-main>div';
@@ -174,4 +181,64 @@
     items.forEach(function (el) { io.observe(el); });
     setTimeout(function () { items.forEach(function (el) { if (el.getBoundingClientRect().top < innerHeight) el.classList.add('tb-in'); }); }, 2500);
   }
+
+  }
+  reveal();
+
+  // tbRouter: client-side navigation between the two pages. Swaps <main> and <footer>, keeps the header, theme, menu and scroll listeners alive.
+  // Any failure falls back to a normal page load. No animation is used to hide it.
+  var routeOf = function (u) { return (u.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '').replace(/\/+$/, '')) || '/'; };
+  var shown = routeOf(location), busy = false;
+  var closeMenu = function () { if (oldMenu && oldMenu.getAttribute('aria-expanded') === 'true') oldMenu.click(); };
+  var toHash = function (h, smooth) {
+    if (!h || h === '#') { scrollTo({ top: 0, behavior: smooth && !reduce ? 'smooth' : 'auto' }); return; }
+    var t = document.getElementById(decodeURIComponent(h.slice(1)));
+    if (t) t.scrollIntoView({ behavior: smooth && !reduce ? 'smooth' : 'auto', block: 'start' });
+  };
+  function swapTo(u, push, y) {
+    if (busy) return;
+    if (routeOf(u) === shown) {
+      if (push && u.href !== location.href) { history.replaceState({ tb: 1, y: scrollY }, ''); history.pushState({ tb: 1 }, '', u.href); }
+      if (y != null) scrollTo(0, y); else toHash(u.hash, true);
+      closeMenu();
+      return;
+    }
+    busy = true;
+    if (push) history.replaceState({ tb: 1, y: scrollY }, '');
+    fetch(u.href, { credentials: 'same-origin' }).then(function (r) { if (!r.ok) throw new Error('http'); return r.text(); }).then(function (html) {
+      var d = new DOMParser().parseFromString(html, 'text/html');
+      var nm = d.querySelector('main'), om = document.querySelector('main');
+      if (!nm || !om) throw new Error('shape');
+      var nf = d.querySelector('footer'), oldFoot = document.querySelector('footer');
+      var code = Array.prototype.filter.call(d.body.querySelectorAll('script:not([src])'), function (s) { return !/menu-toggle|theme-toggle/.test(s.textContent); }).map(function (s) { return s.textContent; }).join('\n;\n');
+      if (push) history.pushState({ tb: 1 }, '', u.href);
+      document.title = d.title;
+      om.replaceWith(document.adoptNode(nm));
+      if (nf && oldFoot) oldFoot.replaceWith(document.adoptNode(nf));
+      shown = routeOf(u);
+      closeMenu();
+      var sc = document.createElement('script'); sc.textContent = '{\n' + code + '\n}'; document.body.appendChild(sc); sc.remove();
+      iconify(document.body); fixVideo(); reveal();
+      if (y != null) scrollTo(0, y); else if (u.hash) toHash(u.hash, false); else scrollTo(0, 0);
+      probe(true);
+      busy = false;
+    }).catch(function () { busy = false; location.href = u.href; });
+  }
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  document.addEventListener('click', function (e) {
+    if (oldMenu && oldMenu.getAttribute('aria-expanded') === 'true' && e.target.closest && !e.target.closest('#navigation, .brand-menu, .menu-toggle')) closeMenu();
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a || (a.target && a.target !== '_self') || a.hasAttribute('download')) return;
+    var u = new URL(a.href, location.href);
+    if (u.origin !== location.origin) return;
+    var r = routeOf(u);
+    if (r !== '/' && r !== '/models') return;
+    e.preventDefault();
+    swapTo(u, true, null);
+  });
+  addEventListener('popstate', function (e) {
+    var u = new URL(location.href);
+    swapTo(u, false, e.state && e.state.y != null ? e.state.y : null);
+  });
 })();
