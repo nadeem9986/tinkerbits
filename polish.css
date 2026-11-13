@@ -174,3 +174,6 @@ html:not([data-theme="dark"]) .site-header:not([data-over="dark"]){background:rg
 .tb-up input[type=file]{display:block;margin-top:6px;max-width:100%;font:inherit}
 .tb-up-s{margin:6px 0 0;font-size:14px;min-height:0}
 .tb-up-s:empty{display:none}
+
+/* v19: theme toggle sat 6px further left in dark than light on phones (inline CSS gave dark margin-right 12px, light 18px). Same margin in both themes. */
+@media (max-width:760px){.site-header .theme-toggle,html[data-theme="dark"] .site-header .theme-toggle{margin-right:12px}}
