@@ -183,34 +183,6 @@
   }
   fixVideo();
   function fixDemo() {
-    // Popular models feed: renders only real entries from /trending.json. No file, empty file or bad data shows nothing.
-    var grid = document.getElementById('models-grid');
-    if (grid && !document.querySelector('.tb-feed')) {
-      fetch('/trending.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
-        if (!d || !Array.isArray(d.items) || !d.items.length || document.querySelector('.tb-feed')) return;
-        var sec = document.createElement('section'); sec.className = 'wrap tb-feed'; sec.setAttribute('aria-label', 'Popular models');
-        var h = document.createElement('h2'); h.textContent = 'Popular right now'; sec.appendChild(h);
-        var p = document.createElement('p'); p.className = 'tb-feed-note';
-        p.textContent = 'Listings from ' + (d.source || 'a public source') + ', shown with credit and a link to the original page. Files stay on the original site. Print eligibility depends on each design\u2019s licence.';
-        sec.appendChild(p);
-        var g = document.createElement('div'); g.className = 'tb-feed-grid';
-        d.items.slice(0, 12).forEach(function (m) {
-          if (!m || !m.title || !/^https:\/\//.test(m.url || '')) return;
-          var a = document.createElement('article'); a.className = 'model-card tb-feed-card';
-          if (/^https:\/\//.test(m.image || '')) { var im = document.createElement('img'); im.src = m.image; im.alt = m.title; im.loading = 'lazy'; im.referrerPolicy = 'no-referrer'; a.appendChild(im); }
-          var b = document.createElement('div'); b.className = 'model-body';
-          var h3 = document.createElement('h3'); h3.textContent = m.title; b.appendChild(h3);
-          if (m.description) { var d2 = document.createElement('p'); d2.textContent = String(m.description).slice(0, 160); b.appendChild(d2); }
-          var meta = document.createElement('span'); meta.textContent = [m.creator ? 'by ' + m.creator : '', m.license ? 'Licence: ' + m.license : 'Licence: check on source'].filter(Boolean).join(' \u00B7 '); b.appendChild(meta);
-          var l = document.createElement('a'); l.href = m.url; l.target = '_blank'; l.rel = 'noopener noreferrer'; l.textContent = 'View original \u2197'; b.appendChild(l);
-          if (m.print_ok === true) { var q = document.createElement('a'); q.href = '/?model=' + encodeURIComponent(m.title) + '#quote'; q.textContent = 'Discuss this print \u2197'; b.appendChild(q); }
-          a.appendChild(b); g.appendChild(a);
-        });
-        if (!g.children.length) return;
-        sec.appendChild(g);
-        var anchor = document.querySelector('.catalogue'); if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(sec, anchor);
-      }).catch(function () {});
-    }
     // Private upload concept on the quote form: file stays in the browser, nothing is sent.
     var qf = document.getElementById('quote-form');
     if (qf && !qf.querySelector('.tb-up')) {
@@ -229,6 +201,40 @@
     }
   }
   fixDemo();
+  function fixDir() {
+    // Directory of public model sites. Links only: no copied model images, text or feeds. Opens in a new tab.
+    var cat = document.querySelector('.catalogue');
+    if (!cat || document.querySelector('.tb-dir')) return;
+    var sites = [
+      ['Printables', 'https://www.printables.com/', 'Free 3D models, run by Prusa Research.'],
+      ['MakerWorld', 'https://makerworld.com/en', 'Models from the Bambu Lab community.'],
+      ['Thingiverse', 'https://www.thingiverse.com/', 'Browse and download community 3D models.'],
+      ['Cults', 'https://cults3d.com/en', 'Free and paid designs from independent creators.'],
+      ['MyMiniFactory', 'https://www.myminifactory.com/', 'Free and paid designs, with the licence shown on each model.']
+    ];
+    var sec = document.createElement('section'); sec.className = 'wrap tb-dir'; sec.setAttribute('aria-label', 'Where to find 3D models');
+    var h = document.createElement('h2'); h.textContent = 'Find a model first'; sec.appendChild(h);
+    var p = document.createElement('p'); p.className = 'tb-dir-lead';
+    p.textContent = 'Browse the popular model sites, download a design you like, then come back here and upload it for a print quote.';
+    sec.appendChild(p);
+    var g = document.createElement('div'); g.className = 'tb-dir-grid';
+    sites.forEach(function (s) {
+      var a = document.createElement('article'); a.className = 'model-card tb-dir-card';
+      var b = document.createElement('div'); b.className = 'model-body';
+      var h3 = document.createElement('h3'); h3.textContent = s[0]; b.appendChild(h3);
+      var d = document.createElement('p'); d.textContent = s[2]; b.appendChild(d);
+      var l = document.createElement('a'); l.href = s[1]; l.target = '_blank'; l.rel = 'noopener noreferrer';
+      l.setAttribute('aria-label', 'Open ' + s[0] + ' in a new tab'); l.textContent = 'Open ' + s[0] + ' \u2197'; b.appendChild(l);
+      a.appendChild(b); g.appendChild(a);
+    });
+    sec.appendChild(g);
+    var n = document.createElement('p'); n.className = 'tb-dir-note';
+    n.textContent = 'Before asking for a paid print, check the design\u2019s licence on the site you downloaded it from. Some designs are for personal use only. These sites are separate from Tinkerbits.';
+    sec.appendChild(n);
+    var back = document.createElement('a'); back.className = 'text-link'; back.href = '/#quote'; back.textContent = 'Already have a file? Upload it for a quote \u2197'; sec.appendChild(back);
+    cat.parentNode.insertBefore(sec, cat);
+  }
+  fixDir();
 
   function reveal() {
   // Reveal on scroll: below-the-fold blocks ease in once. Content stays visible if anything fails.
@@ -283,7 +289,7 @@
       shown = routeOf(u);
       closeMenu();
       var sc = document.createElement('script'); sc.textContent = '{\n' + code + '\n}'; document.body.appendChild(sc); sc.remove();
-      iconify(document.body); fixVideo(); fixDemo(); reveal();
+      iconify(document.body); fixVideo(); fixDemo(); fixDir(); reveal();
       var qf = document.getElementById('quote-form');
       if (qf) {
         var mdl = new URLSearchParams(location.search).get('model');
