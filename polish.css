@@ -93,3 +93,5 @@ html[data-theme="dark"] .location>span span{color:var(--g-accent2)}
 html[data-theme="dark"] .process{background:#12151b;border-top:1px solid var(--g-line);border-bottom:1px solid var(--g-line)}
 html[data-theme="dark"] .hero-visual{background:#0a0c10}
 html[data-theme="dark"] .video-toggle{background:rgba(10,12,16,.72)}
+
+html[data-theme="dark"] .location>span{color:var(--g-accent2)}
