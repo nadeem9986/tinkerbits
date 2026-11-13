@@ -25,6 +25,9 @@ Make the site's top navbar a floating clear-glass bar that bends the content beh
 **Logo as progress**
 - Wrap the "tinkerbits" text in a span. Its text colour is transparent and a two-layer background clips to the text: a base colour layer (navy in light, near-white in dark) whose transparent part grows from the left as `--tb-p` (scroll progress 0 to 1, set on the header), over a gradient (blue to violet to pink to orange). At the top the logo is plain; at the bottom of the page it is fully colourful. Only the CSS variable changes while scrolling.
 
+**Mobile menu**
+- Up to 760px the three-bar brand mark is the menu button: a 44px+ touch target placed before the wordmark with `aria-label`, `aria-controls` and `aria-expanded` kept in sync, and the bars turn into an X when open. The separate "Menu" button is hidden at that size. The "tinkerbits" wordmark stays a link to home. On desktop the mark remains part of the home link and the nav links stay inline.
+
 **Theme switch and icons**
 - Icon-only 44px round button (moon in light, sun in dark), with `aria-label` and `aria-pressed`.
 - One stroke icon set via CSS masks that inherit text colour: arrow-up-right, arrow-right, play, pause, and a two-bar menu icon that turns into an X when open. Text glyphs (arrows, +, play and pause symbols) are replaced.
