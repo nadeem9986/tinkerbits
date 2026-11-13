@@ -108,6 +108,24 @@
     update(); probe(true);
   }
 
+  // Mobile: the three-bar brand mark is the menu button (the separate Menu button is hidden by CSS).
+  var oldMenu = document.querySelector('.menu-toggle');
+  if (header && brand && oldMenu) {
+    var bm = document.createElement('button');
+    bm.type = 'button';
+    bm.className = 'brand-menu';
+    bm.setAttribute('aria-controls', 'navigation');
+    bm.innerHTML = '<span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>';
+    var syncBm = function () {
+      bm.setAttribute('aria-expanded', oldMenu.getAttribute('aria-expanded') || 'false');
+      bm.setAttribute('aria-label', oldMenu.getAttribute('aria-label') || 'Open navigation');
+    };
+    bm.addEventListener('click', function () { oldMenu.click(); });
+    new MutationObserver(syncBm).observe(oldMenu, { attributes: true, attributeFilter: ['aria-expanded', 'aria-label'] });
+    syncBm();
+    header.insertBefore(bm, brand);
+  }
+
   // Modern icons: swap text glyphs for one consistent stroke icon set.
   function icon(cls) { var i = document.createElement('i'); i.className = 'tb-i ' + cls; i.setAttribute('aria-hidden', 'true'); return i; }
   var map = { '\u2197': 'tb-i-ne', '\u2192': 'tb-i-e' };
