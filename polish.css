@@ -156,3 +156,7 @@ html:not([data-theme="dark"]) .site-header:not([data-over="dark"]){background:rg
 .text-link{border-bottom:0!important;text-decoration:none!important}
 .hero-bottom{border-top:0!important}
 .discipline-strip{border-top:0!important;border-bottom:0!important}
+/* Theme icon: no spin or scale-overshoot on swap, no tilt on hover or press. The icon only fades in place. */
+@keyframes tb-fade{from{opacity:.35}to{opacity:1}}
+.theme-toggle .theme-icon svg{animation:tb-fade .18s ease-out}
+.site-header .theme-toggle:hover,.site-header .theme-toggle:active{transform:none}
