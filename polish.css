@@ -152,3 +152,7 @@ html:not([data-theme="dark"]) .site-header:not([data-over="dark"]){background:rg
 /* Auto-hide: fades out after about 1.1s without pointer or focus activity; returns on move, tap or keyboard focus. */
 .tb-vc{transition:opacity .3s ease}
 .tb-vc.tb-vc-hide{opacity:0;pointer-events:none}
+/* Line cleanup: no underline on text links (Explore models etc.), no rule above the hero note, no rules around the tag strip. Cards, forms, filters, step dividers and the footer rule stay. */
+.text-link{border-bottom:0!important;text-decoration:none!important}
+.hero-bottom{border-top:0!important}
+.discipline-strip{border-top:0!important;border-bottom:0!important}
