@@ -160,3 +160,17 @@ html:not([data-theme="dark"]) .site-header:not([data-over="dark"]){background:rg
 @keyframes tb-fade{from{opacity:.35}to{opacity:1}}
 .theme-toggle .theme-icon svg{animation:tb-fade .18s ease-out}
 .site-header .theme-toggle:hover,.site-header .theme-toggle:active{transform:none}
+
+/* v18: popular-models feed (inert until /trending.json has real entries) and private upload concept */
+.tb-feed{padding-top:8px;padding-bottom:8px}
+.tb-feed h2{font-size:clamp(22px,3vw,30px);margin:0 0 6px}
+.tb-feed-note{margin:0 0 18px;max-width:60ch;opacity:.75;font-size:14px}
+.tb-feed-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.tb-feed-card{display:flex;flex-direction:column;overflow:hidden}
+.tb-feed-card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.tb-feed-card .model-body{display:flex;flex-direction:column;gap:6px}
+.tb-feed-card .model-body a{margin-top:2px}
+.tb-up{display:block}
+.tb-up input[type=file]{display:block;margin-top:6px;max-width:100%;font:inherit}
+.tb-up-s{margin:6px 0 0;font-size:14px;min-height:0}
+.tb-up-s:empty{display:none}
