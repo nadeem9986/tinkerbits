@@ -43,3 +43,10 @@ Verified in Chrome with real scrolling on desktop and mobile in both themes.
 ---
 
 Technique reference: Nadeem's link, https://freefrontend.com/css-liquid-glass/ (Ignacio Correia's "Liquid Glass Distortion Card" demo). The code here is an independent implementation of that published technique with a self-generated displacement map.
+
+
+## Update: lens, fallback and page navigation
+
+- Lens path: backdrop-filter is url(#tb-lens) saturate(1.2) with no blur. One feDisplacementMap, scale 30. Light tint rgba(255,255,255,.26) over light content, adaptive light text over dark content.
+- Fallback: only browsers without SVG backdrop-filter support (Safari, iOS browsers, Firefox) use blur(10px) saturate(1.2). Device-size and reduced-motion no longer disable the lens.
+- Navigation between pages is client-side (see polish.js tbRouter): main and footer are swapped, the header persists.
