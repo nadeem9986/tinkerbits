@@ -29,3 +29,9 @@ Redesign branch: `modern-ui-2026-11`. Original site preserved on branch `backup/
 ## What did NOT change
 - Contact details, prices, turnaround (2-4 days), UPI payment, and all existing claims are carried over as-is from the original site copy.
 - No new backend, accounts, integrations, or hosting changes.
+
+## Dark mode (13 Nov 2026)
+- Theme toggle in the header (moon/sun) switches between light and dark themes on both pages.
+- Default follows the visitor's system preference (`prefers-color-scheme`); the choice is remembered in `localStorage` (`tb-theme`).
+- Dark palette keeps the blue accent (#1555ed family) on deep navy surfaces; the already-dark process section and hero video are unchanged.
+- `meta theme-color` updates with the theme; dark mode sets `color-scheme: dark` so native form controls match.
