@@ -111,3 +111,16 @@ html[data-theme="dark"] .hero-visual{background:#0a0c10}
 html[data-theme="dark"] .video-toggle{background:rgba(10,12,16,.72)}
 
 html[data-theme="dark"] .location>span{color:var(--g-accent2)}
+
+/* ---------- Brand mark as the mobile menu button (up to 760px) ---------- */
+.brand-menu{display:none}
+@media(max-width:760px){
+  .site-header .menu-toggle{display:none}
+  .site-header .brand .brand-mark{display:none}
+  .brand-menu{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;margin:0 4px 0 -8px;padding:0;background:transparent;border:0;border-radius:12px;cursor:pointer;color:var(--nv-text)}
+  .brand-menu .brand-mark{margin:0}
+  .brand-menu .brand-mark i{transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .25s ease}
+  .brand-menu[aria-expanded="true"] .brand-mark i:nth-child(1){transform:translateY(9px) rotate(45deg)}
+  .brand-menu[aria-expanded="true"] .brand-mark i:nth-child(2){opacity:0;transform:scaleX(.2)}
+  .brand-menu[aria-expanded="true"] .brand-mark i:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+}
