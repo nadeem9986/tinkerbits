@@ -50,3 +50,8 @@ Technique reference: Nadeem's link, https://freefrontend.com/css-liquid-glass/ (
 - Lens path: backdrop-filter is url(#tb-lens) saturate(1.2) with no blur. One feDisplacementMap, scale 30. Light tint rgba(255,255,255,.26) over light content, adaptive light text over dark content.
 - Fallback: only browsers without SVG backdrop-filter support (Safari, iOS browsers, Firefox) use blur(10px) saturate(1.2). Device-size and reduced-motion no longer disable the lens.
 - Navigation between pages is client-side (see polish.js tbRouter): main and footer are swapped, the header persists.
+
+## Update: flat edge-to-edge bar (14 Nov 2026)
+
+- The bar is now flat and full width: sticky at the very top, no side gap, no rounded corners, a 1px bottom hairline. The glass recipe itself is unchanged: the same #tb-lens single-pass displacement, clear tint, adaptive text colour and logo scroll-progress fill. On mobile the menu opens as a full-width panel directly under the bar.
+- The site palette moved from blue/off-white to warm off-white/charcoal/orange; the bar's hairline and tints follow it. Fonts moved from Sora/Manrope to Oswald/Barlow (nav links and buttons in Oswald capitals).
