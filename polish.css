@@ -5,24 +5,24 @@
 .footer-bottom,.footer-bottom a,.footer-bottom span,
 .contact-email,.form-note,.material-disclaimer,.optional,.location,
 .quote-copy>p:not(.eyebrow),.material-title span,.discipline-strip span,
-.catalogue-note p,.model-index,.model-body>span,.results-label{color:#4e5a72}
-.tiny-cross{color:#a9c6ee}
-:where(a,button,input,select,textarea,summary):focus-visible{outline:2px solid #1555ed;outline-offset:3px;border-radius:6px}
+.catalogue-note p,.model-index,.model-body>span,.results-label{color:#6b6257}
+.tiny-cross{color:#d8c5ab}
+:where(a,button,input,select,textarea,summary):focus-visible{outline:2px solid #e05e10;outline-offset:3px;border-radius:6px}
 
 /* ---------- Icon-only theme switch ---------- */
 .theme-toggle{width:44px;min-width:44px;height:44px;padding:0;justify-content:center;gap:0;border-radius:50%;
-  background:rgba(255,255,255,.55);border:1px solid rgba(21,85,237,.22);color:#142039;
+  background:rgba(255,255,255,.55);border:1px solid rgba(224,94,16,.22);color:#23201b;
   transition:background .3s ease,border-color .3s ease,color .3s ease,transform .3s cubic-bezier(.22,1,.36,1)}
 .theme-toggle .theme-label{display:none}
 .theme-toggle .theme-icon svg{width:20px;height:20px;animation:tb-spin .55s cubic-bezier(.22,1,.36,1)}
-.theme-toggle:hover{transform:rotate(14deg) scale(1.06);color:#1555ed;border-color:#1555ed}
+.theme-toggle:hover{transform:rotate(14deg) scale(1.06);color:#e05e10;border-color:#e05e10}
 .theme-toggle:active{transform:scale(.94)}
 @keyframes tb-spin{from{transform:rotate(-90deg) scale(.4);opacity:0}to{transform:none;opacity:1}}
 
 /* ---------- Navbar: clear glass, adaptive text colour, logo fill as scroll progress ---------- */
-.site-header{--nv-text:#142039;--nv-base:#142039;--nv-c1:#1555ed;--nv-c2:#6a5cff;--nv-c3:#e2509a;--nv-c4:#ff9a3c;
-  background:rgba(255,255,255,.12);border:1px solid rgba(21,85,237,.16);
-  box-shadow:0 10px 30px rgba(16,33,66,.12),inset 0 1px 0 rgba(255,255,255,.55);
+.site-header{--nv-text:#23201b;--nv-base:#23201b;--nv-c1:#e05e10;--nv-c2:#6a5cff;--nv-c3:#e2509a;--nv-c4:#ff9a3c;
+  background:rgba(255,255,255,.12);border:1px solid rgba(224,94,16,.16);
+  box-shadow:0 10px 30px rgba(60,35,10,.12),inset 0 1px 0 rgba(255,255,255,.55);
   transition:background-color .35s ease,border-color .35s ease}
 .site-header:before,.site-header:after,html[data-theme="dark"] .site-header:before,html[data-theme="dark"] .site-header:after{display:none}
 html.tb-lens-ready .site-header{-webkit-backdrop-filter:url(#tb-lens) saturate(1.15);backdrop-filter:url(#tb-lens) saturate(1.15)}
@@ -32,18 +32,18 @@ html.tb-lite .site-header{-webkit-backdrop-filter:blur(8px) saturate(1.2);backdr
 html[data-theme="dark"] .site-header .brand,html[data-theme="dark"] .site-header nav>a:not(.nav-cta),html[data-theme="dark"] .site-header .theme-toggle{text-shadow:none}
 .site-header .brand,.site-header .theme-toggle,.site-header .menu-toggle{color:var(--nv-text)}
 @media(min-width:761px){.site-header nav>a:not(.nav-cta){color:var(--nv-text)}.site-header nav>a:not(.nav-cta):hover{opacity:.72}}
-.site-header .menu-toggle{background:rgba(255,255,255,.5);border-color:rgba(21,85,237,.2)}
+.site-header .menu-toggle{background:rgba(255,255,255,.5);border-color:rgba(224,94,16,.2)}
 /* over dark content (set by polish.js) and in dark theme: light text on a deep clear tint */
-html[data-theme="dark"] .site-header,.site-header[data-over="dark"]{--nv-text:#f4f7ff;--nv-base:#f4f7ff;--nv-c1:#5b8cff;--nv-c2:#9b7bff;--nv-c3:#ff7ab8;--nv-c4:#ffb85c;
-  background:rgba(8,12,22,.50);border-color:rgba(255,255,255,.10);box-shadow:0 12px 32px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.14)}
-html[data-theme="dark"] .site-header{background:rgba(14,16,20,.58);border-color:transparent;box-shadow:0 14px 34px rgba(0,0,0,.5),inset 0 1px 0 rgba(143,178,255,.20)}
+html[data-theme="dark"] .site-header,.site-header[data-over="dark"]{--nv-text:#f6f0e6;--nv-base:#f6f0e6;--nv-c1:#ff8a3d;--nv-c2:#9b7bff;--nv-c3:#ff7ab8;--nv-c4:#ffb85c;
+  background:rgba(20,14,8,.50);border-color:rgba(255,255,255,.10);box-shadow:0 12px 32px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.14)}
+html[data-theme="dark"] .site-header{background:rgba(22,18,13,.58);border-color:transparent;box-shadow:0 14px 34px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,167,98,.20)}
 .site-header[data-over="dark"] .theme-toggle,.site-header[data-over="dark"] .menu-toggle,
 html[data-theme="dark"] .site-header .menu-toggle,html[data-theme="dark"] .site-header .theme-toggle{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22)}
-@media(min-width:761px){.site-header[data-over="dark"] .nav-cta{background:#fff;color:#0a1630}}
-html[data-theme="dark"] .brand-dot,.site-header[data-over="dark"] .brand-dot{color:#6f9bff}
-html[data-theme="dark"] .brand-mark i,.site-header[data-over="dark"] .brand-mark i{background:#5b8cff}
-@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.site-header{background:#f4f7ff}html[data-theme="dark"] .site-header,.site-header[data-over="dark"]{background:#171a20}}
-@media(max-width:760px){html[data-theme="dark"] .site-header,.site-header[data-over="dark"]{background:rgba(10,13,22,.66)}html[data-theme="dark"] .site-header{background:rgba(14,16,20,.68)}}
+@media(min-width:761px){.site-header[data-over="dark"] .nav-cta{background:#fff;color:#171310}}
+html[data-theme="dark"] .brand-dot,.site-header[data-over="dark"] .brand-dot{color:#ff8a3d}
+html[data-theme="dark"] .brand-mark i,.site-header[data-over="dark"] .brand-mark i{background:#ff8a3d}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.site-header{background:#f6f0e6}html[data-theme="dark"] .site-header,.site-header[data-over="dark"]{background:#201a14}}
+@media(max-width:760px){html[data-theme="dark"] .site-header,.site-header[data-over="dark"]{background:rgba(20,14,8,.66)}html[data-theme="dark"] .site-header{background:rgba(22,18,13,.68)}}
 
 /* logo wordmark fills with colour as the page scrolls (--tb-p is 0 to 1, set by polish.js) */
 .tb-word{color:transparent;-webkit-text-fill-color:transparent;padding-bottom:.08em;
@@ -72,11 +72,11 @@ html[data-theme="dark"] .brand-mark i,.site-header[data-over="dark"] .brand-mark
 }
 
 /* ---------- Dark theme: graphite + electric blue ---------- */
-html[data-theme="dark"]{--g-bg:#0e1013;--g-alt:#13161b;--g-surface:#171a20;--g-raised:#1e222a;--g-line:#2b303a;--g-line2:#3a4150;--g-text:#eceff5;--g-muted:#adb5c3;--g-faint:#939cac;--g-accent:#6f9bff;--g-accent2:#8fb2ff}
+html[data-theme="dark"]{--g-bg:#16120e;--g-alt:#1b1611;--g-surface:#201a14;--g-raised:#28211a;--g-line:#3b3227;--g-line2:#4d4234;--g-text:#f2ebdf;--g-muted:#c9bcab;--g-faint:#a49685;--g-accent:#ff8a3d;--g-accent2:#ffa762}
 html[data-theme="dark"] body{background:var(--g-bg);color:var(--g-text)}
-html[data-theme="dark"] :where(a,button,input,select,textarea,summary):focus-visible{outline-color:#8fb2ff}
-html[data-theme="dark"] .nav-cta{background:var(--g-text);color:#0e1013}
-html[data-theme="dark"] .nav-cta:hover{background:#2f6bff;color:#fff}
+html[data-theme="dark"] :where(a,button,input,select,textarea,summary):focus-visible{outline-color:#ffa762}
+html[data-theme="dark"] .nav-cta{background:var(--g-text);color:#16120e}
+html[data-theme="dark"] .nav-cta:hover{background:#e05e10;color:#fff}
 html[data-theme="dark"] .site-header nav>a:not(.nav-cta):hover{color:var(--g-accent2)}
 html[data-theme="dark"] .menu-toggle{border-color:var(--g-line2);color:var(--g-text)}
 html[data-theme="dark"] .theme-toggle:hover{border-color:var(--g-accent)}
@@ -92,7 +92,7 @@ html[data-theme="dark"] .discipline-strip b,html[data-theme="dark"] .form-status
 html[data-theme="dark"] .library,html[data-theme="dark"] .material-object,html[data-theme="dark"] .model-image{background:var(--g-raised);color:var(--g-text)}
 html[data-theme="dark"] .quote-section,html[data-theme="dark"] .catalogue-note{background:var(--g-alt)}
 html[data-theme="dark"] form,html[data-theme="dark"] .model-card{background:var(--g-surface);border-color:var(--g-line)}
-html[data-theme="dark"] input,html[data-theme="dark"] select,html[data-theme="dark"] textarea{background:#0f1115;border-color:var(--g-line2);color:var(--g-text)}
+html[data-theme="dark"] input,html[data-theme="dark"] select,html[data-theme="dark"] textarea{background:#171310;border-color:var(--g-line2);color:var(--g-text)}
 html[data-theme="dark"] .search{border-color:var(--g-line2)}
 html[data-theme="dark"] .search input{background:transparent;border:0}
 html[data-theme="dark"] input::placeholder,html[data-theme="dark"] textarea::placeholder{color:var(--g-faint)}
@@ -100,14 +100,14 @@ html[data-theme="dark"] .filters button.active,html[data-theme="dark"] .filters 
 html[data-theme="dark"] .text-link span,html[data-theme="dark"] .library .round-arrow,html[data-theme="dark"] .round-arrow span{color:var(--g-accent2)}
 
 /* Mobile dropdown panel in dark theme */
-@media (max-width:760px){html[data-theme="dark"] .site-header nav{background:#171a20;border-color:var(--g-line);box-shadow:0 15px 30px #00000080}}
+@media (max-width:760px){html[data-theme="dark"] .site-header nav{background:#201a14;border-color:var(--g-line);box-shadow:0 15px 30px #00000080}}
 
 /* Contrast follow-ups */
-.model-image>.model-index{color:#4e5a72}
+.model-image>.model-index{color:#6b6257}
 html[data-theme="dark"] .model-image>.model-index{color:var(--g-faint)}
 html[data-theme="dark"] .location>span span{color:var(--g-accent2)}
-html[data-theme="dark"] .process{background:#12151b;border-top:1px solid var(--g-line);border-bottom:1px solid var(--g-line)}
-html[data-theme="dark"] .hero-visual{background:#0a0c10}
+html[data-theme="dark"] .process{background:#1a1512;border-top:1px solid var(--g-line);border-bottom:1px solid var(--g-line)}
+html[data-theme="dark"] .hero-visual{background:#14100d}
 html[data-theme="dark"] .video-toggle{background:rgba(10,12,16,.72)}
 
 html[data-theme="dark"] .location>span{color:var(--g-accent2)}
@@ -133,14 +133,14 @@ html:not([data-theme="dark"]) .site-header:not([data-over="dark"]){background:rg
 
 /* Touch: no sticky hover ring on the theme icon. Hover styling only for real pointers; keyboard focus-visible outline is untouched. */
 @media (hover:none),(pointer:coarse){
-.site-header .theme-toggle:hover{transform:none;color:var(--nv-text);border-color:rgba(21,85,237,.22)}
+.site-header .theme-toggle:hover{transform:none;color:var(--nv-text);border-color:rgba(224,94,16,.22)}
 .site-header[data-over="dark"] .theme-toggle:hover,html[data-theme="dark"] .site-header .theme-toggle:hover{border-color:rgba(255,255,255,.22)}
 }
 .theme-toggle:focus:not(:focus-visible){outline:none}
 
 /* Video control pill (bottom centre of the hero video). Play/pause only: the footage has no audio track. */
 .tb-vc{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:4;display:flex;padding:6px;border-radius:999px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.5);box-shadow:0 8px 28px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.45);-webkit-backdrop-filter:blur(3px) saturate(1.3);backdrop-filter:blur(3px) saturate(1.3);backdrop-filter:url(#tb-lens) saturate(1.2)}
-.tb-vc-btn{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.94);color:#0d1b36;display:grid;place-items:center;padding:0;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.18);transition:transform .2s ease,background .2s ease}
+.tb-vc-btn{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.94);color:#241c12;display:grid;place-items:center;padding:0;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.18);transition:transform .2s ease,background .2s ease}
 .tb-vc-btn:active{transform:scale(.94)}
 @media (hover:hover) and (pointer:fine){.tb-vc-btn:hover{background:#fff;transform:scale(1.06)}}
 .tb-vc-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
@@ -195,8 +195,8 @@ main>.catalogue{display:none}
 .tb-dir{padding-bottom:72px}
 
 /* v24: seven-slit brand mark (inline SVG, same slant and footprint as the old three bars) */
-.brand-mark .tb-mark{display:block;overflow:visible;fill:#1555ed;flex:none}
-html[data-theme="dark"] .brand-mark .tb-mark,.site-header[data-over="dark"] .brand-mark .tb-mark{fill:#5b8cff}
+.brand-mark .tb-mark{display:block;overflow:visible;fill:#e05e10;flex:none}
+html[data-theme="dark"] .brand-mark .tb-mark,.site-header[data-over="dark"] .brand-mark .tb-mark{fill:#ff8a3d}
 .brand-mark .tb-mark path{transform-box:fill-box;transform-origin:center;transform:translateY(0) rotate(0deg) skewY(0deg)}
 @media (max-width:760px){
   .brand-menu .brand-mark .tb-mark path{transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .25s ease}
@@ -206,8 +206,8 @@ html[data-theme="dark"] .brand-mark .tb-mark,.site-header[data-over="dark"] .bra
 }
 
 /* v25: lettered brand mark - the word tinkerbits set inside the slanted seven-slit silhouette */
-.brand-mark .tb-lg{display:block;overflow:visible;fill:#1555ed;flex:none}
-html[data-theme="dark"] .brand-mark .tb-lg,.site-header[data-over="dark"] .brand-mark .tb-lg{fill:#5b8cff}
+.brand-mark .tb-lg{display:block;overflow:visible;fill:#e05e10;flex:none}
+html[data-theme="dark"] .brand-mark .tb-lg,.site-header[data-over="dark"] .brand-mark .tb-lg{fill:#ff8a3d}
 .brand-mark .tb-lg .tb-x{opacity:0}
 @media (max-width:760px){
   .brand-menu .brand-mark .tb-lg .tb-t,.brand-menu .brand-mark .tb-lg .tb-x{transform-box:fill-box;transform-origin:center;transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .25s ease}
@@ -227,3 +227,74 @@ html{scroll-behavior:auto!important}
 
 /* v31: content on screen after a link jump shows at once (class set by polish.js). Normal scroll fade-in is unchanged. */
 .tb-reveal.tb-now{transition:none!important}
+
+/* v32: workshop identity (14 Nov 2026) - distinct 3D-printing studio look, away from the generic SaaS look.
+   Condensed Oswald headlines + Barlow body (Manrope/Sora retired), flat edge-to-edge liquid-glass bar,
+   warm paper/charcoal/safety-orange palette in both themes, object-first full-width hero, squared corners. */
+
+/* Typography */
+body{font:16px/1.62 Barlow,sans-serif}
+h1,h2,h3,.brand,.visual-caption strong,.footer-main p,.catalogue-note strong{font-family:Oswald,sans-serif;font-weight:550;letter-spacing:0}
+h1{font-size:clamp(40px,7vw,88px);font-weight:600;text-transform:uppercase;letter-spacing:.5px;line-height:1.04}
+h2{font-size:clamp(28px,3.6vw,48px);text-transform:uppercase;letter-spacing:.5px;line-height:1.12}
+h3{font-weight:550;letter-spacing:.2px}
+.brand{font-weight:550;letter-spacing:-.2px}
+.eyebrow,.button,.nav-cta,.menu-toggle,.card-top,.discipline-strip span,.discipline-strip p,.results-label,.model-body>span,.filters button,label,.visual-top,.visual-tab,.theme-toggle,.card-number,.caption-number,.contact-email{font-family:Oswald,sans-serif}
+.eyebrow{font-weight:600;letter-spacing:2.2px}
+.button,.nav-cta,.menu-toggle,.theme-toggle{text-transform:uppercase;letter-spacing:1.2px;font-weight:550}
+label{font-weight:550;letter-spacing:1px;text-transform:uppercase}
+.card-top,.results-label,.model-body>span,.visual-top,.visual-tab,.card-number,.caption-number{letter-spacing:1.6px}
+.discipline-strip p{font-weight:550;letter-spacing:1.2px;text-transform:uppercase}
+
+/* Squared corners: workshop, not SaaS */
+.button,.nav-cta,.menu-toggle,form,input,select,textarea,.search,.filters button,.model-card,.service-card,.material-object,.catalogue-note{border-radius:4px}
+.theme-toggle{border-radius:50%}
+
+/* Flat edge-to-edge liquid-glass bar (same lens, new geometry) */
+html{scroll-padding-top:84px}
+.site-header{top:0;width:100%;max-width:none;margin:0;height:66px;padding:0 max(24px,calc((100% - 1408px)/2 + 20px));border-left:0;border-right:0;border-top:0;border-radius:0}
+@media(max-width:760px){html{scroll-padding-top:72px}.site-header{height:60px;padding:0 14px}}
+@media(max-width:760px){.site-header nav{top:calc(100% + 1px);border-radius:0;border-left:0;border-right:0}}
+
+/* Wordmark scroll fill: warm spectrum */
+.site-header{--nv-c1:#ffb02e;--nv-c2:#ff5e3a;--nv-c3:#e2509a;--nv-c4:#8a6cff}
+html[data-theme="dark"] .site-header,.site-header[data-over="dark"]{--nv-c1:#ffc25c;--nv-c2:#ff7a4d;--nv-c3:#ff7ab8;--nv-c4:#9b8aff}
+
+/* Object-first hero: the print time-lapse is the stage */
+.hero{display:block;width:100%;max-width:none;padding:0;gap:0}
+.hero-visual{min-height:min(78vh,660px);border-radius:0;margin:0}
+.hero-visual video{border-radius:0}
+.hero-visual:after{background:linear-gradient(100deg,rgba(20,14,8,.88) 0%,rgba(20,14,8,.5) 44%,rgba(20,14,8,0) 72%),linear-gradient(0deg,rgba(20,14,8,.6),transparent 42%)}
+.hero-copy{position:absolute;z-index:2;left:max(24px,calc((100% - 1280px)/2));right:40px;bottom:64px;max-width:640px;color:#fff}
+.hero-copy .eyebrow{color:#f5c58f;margin-bottom:16px}
+.hero-copy h1{color:#fff;margin-bottom:16px}
+.hero-copy h1>span{color:#ff8a3d}
+.hero-copy .hero-intro{color:rgba(255,255,255,.85);margin-bottom:28px;max-width:430px;font-size:16px}
+.hero-copy .text-link{color:#fff}
+.hero-copy .text-link:hover{color:#ffa762}
+.visual-caption{position:absolute;left:auto;right:max(24px,calc((100% - 1280px)/2));bottom:64px;margin:0;padding:0;text-align:right}
+.video-credit{margin:12px auto 48px}
+@media(min-width:1600px){.hero-visual{min-height:min(80vh,760px)}}
+@media(max-width:1100px){.hero-copy{bottom:52px}.visual-caption{bottom:52px}}
+@media(max-width:760px){
+  .hero{padding:0}
+  .hero-visual{min-height:560px}
+  .hero-copy{left:20px;right:20px;bottom:46px}
+  .hero-copy .hero-intro{font-size:14px;max-width:none}
+  .visual-caption{display:none}
+  .video-credit{margin:10px auto 30px}
+}
+
+/* Service cards: charcoal + warm paper, orange layer lines */
+.service-card{min-height:400px}
+.custom{background:#23201b;color:#fff}
+.layer-graphic i{border-color:rgba(255,138,61,.6);background:rgba(224,94,16,.10)}
+.orbital-graphic i{border-color:#e05e10;box-shadow:5px 5px 0 #f0b07f}
+html[data-theme="dark"] .orbital-graphic i{box-shadow:5px 5px 0 #b84a0c}
+
+/* Process band: workshop tape edge */
+.process{border-top:4px solid #e05e10}
+html[data-theme="dark"] .process{border-top-color:#ff8a3d}
+
+/* Dark-theme hero overlay stays readable */
+html[data-theme="dark"] .hero-visual:after{background:linear-gradient(100deg,rgba(12,9,6,.9) 0%,rgba(12,9,6,.5) 44%,rgba(12,9,6,0) 72%),linear-gradient(0deg,rgba(12,9,6,.6),transparent 42%)}
