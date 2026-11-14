@@ -298,3 +298,14 @@ html[data-theme="dark"] .process{border-top-color:#ff8a3d}
 
 /* Dark-theme hero overlay stays readable */
 html[data-theme="dark"] .hero-visual:after{background:linear-gradient(100deg,rgba(12,9,6,.9) 0%,rgba(12,9,6,.5) 44%,rgba(12,9,6,0) 72%),linear-gradient(0deg,rgba(12,9,6,.6),transparent 42%)}
+
+/* v33: workshop follow-ups - nav links in Oswald capitals, stronger paper tint behind the light bar
+   (content behind the clear glass was colliding with nav text), square hero scrim corners,
+   warm material swatch backgrounds, warm dark borders on the quote links, warm mobile menu panel. */
+.site-header nav{font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:1.2px;font-weight:550}
+html:not([data-theme="dark"]) .site-header:not([data-over="dark"]){background:rgba(250,247,241,.5)}
+.hero-visual:after{border-radius:0}
+.material-object{background:#f0e8da}
+html[data-theme="dark"] .contact-email,html[data-theme="dark"] .location>span{border-color:#4d4234}
+@media(max-width:760px){.site-header nav{background:#fdfbf7}}
+html[data-theme="dark"] .material-object{background:#221c15}
