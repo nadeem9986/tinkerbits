@@ -312,5 +312,5 @@ html[data-theme="dark"] .material-object{background:#221c15}
 
 /* v34: the bar keeps its clear glass over the hero, then gains a stronger paper tint once you scroll,
    so content sliding underneath never collides with the nav text. Class set by polish.js. */
-.site-header.tb-scrolled{background:rgba(250,247,241,.84)}
+html:not([data-theme="dark"]) .site-header.tb-scrolled:not([data-over="dark"]){background:rgba(250,247,241,.84)}
 html[data-theme="dark"] .site-header.tb-scrolled,.site-header.tb-scrolled[data-over="dark"]{background:rgba(22,18,13,.82)}
