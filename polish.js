@@ -101,6 +101,7 @@
       var max = Math.max(1, doc.scrollHeight - innerHeight);
       var p = Math.min(1, Math.max(0, y / max));
       if (Math.abs(p - lastP) > 0.002) { lastP = p; header.style.setProperty('--tb-p', p.toFixed(3)); }
+      header.classList.toggle('tb-scrolled', y > 40);
       probe(false);
     };
     addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
