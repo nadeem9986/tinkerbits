@@ -10,7 +10,7 @@
 
   // Browser theme-color follows the graphite dark palette.
   var meta = document.querySelector('meta[name="theme-color"]');
-  function syncMeta() { if (meta) meta.setAttribute('content', doc.dataset.theme === 'dark' ? '#0e1013' : '#fafbff'); }
+  function syncMeta() { if (meta) meta.setAttribute('content', doc.dataset.theme === 'dark' ? '#16120e' : '#faf7f1'); }
   new MutationObserver(function () { syncMeta(); probe(true); }).observe(doc, { attributes: true, attributeFilter: ['data-theme'] });
   syncMeta();
 
